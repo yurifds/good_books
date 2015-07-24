@@ -1,0 +1,47 @@
+<h1>Manage Books</h1>
+<%= render 'form_errors', record:@book %>
+
+<%= form_for @book do |f| %>
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label :author %>
+    <%= f.text_field :author %>
+  </div>
+  <div>
+    <%= f.label :category %>
+    <%= f.select :category_id, Category.all.collect {|category| [ category.name, category.id ] } %>
+  </div>
+  <div>
+    <%= f.label :amazon_id %>
+    <%= f.text_field :amazon_id %>
+  </div>
+  <div>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+  <%= f.submit 'Add book'%>
+<% end %>
+
+<br/><br/>
+
+<table border="1">
+  <% Book.all.each do |book|   %>
+    <tr>
+      <th> Title </th>
+      <th> Author </th>
+      <th> Category </th>
+      <th> Edit </th>
+      <th> Remove </th>
+    </tr>
+    <tr>
+      <td> <%= book.title %> </td>
+      <td> <%= book.author %> </td>
+      <td> <%= book.category.name %> </td>
+      <td> <%= link_to 'Edit', edit_book_path(book) %> </td>
+      <td> <%= link_to 'Remove', book, method: :delete, data: { confirm: "Are you sure?" } %> </td>
+    </tr>
+  <% end %>
+</table>

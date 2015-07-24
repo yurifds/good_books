@@ -1,0 +1,8 @@
+<h1>Edit Category</h1>
+<%= render 'form_errors', record:@category %>
+
+<%= form_for @category  do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.submit 'Edit category'%>
+<% end %>

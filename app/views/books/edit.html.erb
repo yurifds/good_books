@@ -1,0 +1,25 @@
+<h1>Edit books</h1>
+
+<%= form_for @book do |f| %>
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label :author %>
+    <%= f.text_field :author %>
+  </div>
+  <div>
+    <%= f.label :category %>
+    <%= f.select :category_id, Category.all.collect {|category| [ category.name, category.id ] } %>
+  </div>
+  <div>
+    <%= f.label :amazon_id %>
+    <%= f.text_field :amazon_id %>
+  </div>
+  <div>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+  <%= f.submit 'Edit book'%>
+<% end %>

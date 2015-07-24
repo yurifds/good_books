@@ -1,0 +1,20 @@
+<h1>Manager Categories</h1>
+<%= render 'form_errors', record:@category %>
+
+<%= form_for @category do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.submit 'Add category'%>
+<% end %>
+
+<br/><br/>
+<% if @categories && !@categories.empty? %>
+  <table border="1">
+    <tr>
+      <th> Name </th>
+      <th> Edit </th>
+      <th> Remove </th>
+    </tr>
+    <%= render @categories %>
+  </table>
+<% end %>

@@ -1,0 +1,39 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Programming Books</a>
+    <%= form_tag books_path, method: :get,
+          class: "navbar-form navbar-left",role:'search' do %>
+      <div class="form-group">
+        <%= select_tag "category", options_for_select([ "Ruby", "Ruby on Rails" ]),
+          class:'btn dropdown-toggle btn-default' %>
+        <%= text_field_tag(:search,params[:search],
+              placeholder: "Search book", class: "form-control") %>
+      </div>
+      <%= link_to 'Search', new_category_path, class:'btn btn-default' %>
+    <% end %>
+
+    <% if user_signed_in? %>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+              role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.name %>
+                <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <% if can?(:manage, :all)%>
+              <li><%= link_to 'Manage books', books_path %></li>
+              <li><%= link_to 'Manage categories', categories_path %></li>
+            <% end  %>
+            <li><%= link_to 'Logout', destroy_user_session_path, method: 'delete' %></li>
+          </ul>
+        </li>
+      </ul>
+    <% end %>
+
+    <% if !user_signed_in? %>
+        <ul class="nav navbar-nav navbar-right">
+          <li><%= link_to 'Faça seu loguin', new_user_session_path %></li>
+          <li><%= link_to 'Cadastre-se', new_user_registration_path %></li>
+        </ul>
+    <% end %>
+  </div>
+</nav>
