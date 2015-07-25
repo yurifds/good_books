@@ -1,10 +1,11 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Programming Books</a>
+    <a class="navbar-brand" href="#">GoodBooks4Devs</a>
     <%= form_tag books_path, method: :get,
           class: "navbar-form navbar-left",role:'search' do %>
       <div class="form-group">
-        <%= select_tag "category", options_for_select([ "Ruby", "Ruby on Rails" ]),
+        <%= select_tag "category",
+            options_for_select(Category.all.collect {|category| [ category.name, category.id ] }),
           class:'btn dropdown-toggle btn-default' %>
         <%= text_field_tag(:search,params[:search],
               placeholder: "Search book", class: "form-control") %>

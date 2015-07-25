@@ -1,7 +1,15 @@
 @import "bootstrap";
 body { padding-top: 60px; }
 
-.welcome {
-  color: #777;
-  padding: 15px 15px
+.navbar-inverse {
+  background-color: #3442B1;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+  color: #F3EEEE;
+}
+
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: #3442B1;
+  color: #F3EEEE;
 }

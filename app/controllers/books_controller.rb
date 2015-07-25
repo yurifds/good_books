@@ -10,7 +10,12 @@ class BooksController < ApplicationController
   end
 
   def update
-    #code
+    @book = Book.find(params[:id])
+    if @book.update(book_params)
+      redirect_to books_path, notice: 'Book edited successfully'
+    else
+      render :edit
+    end
   end
 
   def create
