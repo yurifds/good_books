@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150724152113) do
+ActiveRecord::Schema.define(version: 20150726173507) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,10 +20,13 @@ ActiveRecord::Schema.define(version: 20150724152113) do
     t.string   "title"
     t.string   "author"
     t.string   "description"
-    t.string   "amazon_id"
-    t.integer  "category_id", null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "category_id",             null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "image_book_file_name"
+    t.string   "image_book_content_type"
+    t.integer  "image_book_file_size"
+    t.datetime "image_book_updated_at"
   end
 
   add_index "books", ["category_id"], name: "index_books_on_category_id", using: :btree
@@ -34,17 +37,16 @@ ActiveRecord::Schema.define(version: 20150724152113) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "reviews", force: :cascade do |t|
+  create_table "ratings", force: :cascade do |t|
     t.integer  "points",     null: false
-    t.text     "comment",    null: false
     t.integer  "user_id",    null: false
     t.integer  "book_id",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "reviews", ["book_id"], name: "index_reviews_on_book_id", using: :btree
-  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id", using: :btree
+  add_index "ratings", ["book_id"], name: "index_ratings_on_book_id", using: :btree
+  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name",                                   null: false
@@ -68,6 +70,6 @@ ActiveRecord::Schema.define(version: 20150724152113) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "books", "categories"
-  add_foreign_key "reviews", "books"
-  add_foreign_key "reviews", "users"
+  add_foreign_key "ratings", "books"
+  add_foreign_key "ratings", "users"
 end

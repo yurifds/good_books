@@ -2,14 +2,25 @@
 body { padding-top: 60px; }
 
 .navbar-inverse {
-  background-color: #3442B1;
+  background-color: #3f3f3f;
 }
 
 .navbar-inverse .navbar-nav > li > a {
-  color: #F3EEEE;
+  color: #D7D7D7;
 }
 
 .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
-  background-color: #3442B1;
+  background-color: rgba(#4a544b, 0.96);
   color: #F3EEEE;
+}
+
+.thumbnail:hover {
+  border-color: rgba(#0d0d0c, 0.98)
+}
+
+hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 0;
+  border-top: 1px solid #969191;
 }

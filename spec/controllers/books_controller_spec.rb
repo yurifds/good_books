@@ -20,7 +20,6 @@ RSpec.describe BooksController do
           title: 'Conhecendo Ruby',
           author: 'Eustáquio',
           category_id: category.id,
-          amazon_id: '12345',
           description: 'Livro ruby iniciante'
         }
       }

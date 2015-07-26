@@ -1,7 +1,7 @@
 <h1>Manage Books</h1>
 <%= render 'form_errors', record:@book %>
 
-<%= form_for @book do |f| %>
+<%= form_for @book ,:html => { :multipart => true } do |f| %>
   <div>
     <%= f.label :title %>
     <%= f.text_field :title %>
@@ -15,9 +15,9 @@
     <%= f.select :category_id, Category.all.collect {|category| [ category.name, category.id ] } %>
   </div>
   <div>
-    <%= f.label :amazon_id %>
-    <%= f.text_field :amazon_id %>
+    <%= f.file_field :image_book %>
   </div>
+  <br>
   <div>
     <%= f.label :description %>
     <%= f.text_area :description %>
@@ -26,9 +26,8 @@
 <% end %>
 
 <br/><br/>
-
-<table border="1">
-  <% Book.all.each do |book|   %>
+<% if @books && !@books.empty? %>
+  <table border="1">
     <tr>
       <th> Title </th>
       <th> Author </th>
@@ -36,12 +35,6 @@
       <th> Edit </th>
       <th> Remove </th>
     </tr>
-    <tr>
-      <td> <%= book.title %> </td>
-      <td> <%= book.author %> </td>
-      <td> <%= book.category.name %> </td>
-      <td> <%= link_to 'Edit', edit_book_path(book) %> </td>
-      <td> <%= link_to 'Remove', book, method: :delete, data: { confirm: "Are you sure?" } %> </td>
-    </tr>
-  <% end %>
-</table>
+    <%= render @books %>
+  </table>
+<% end %>

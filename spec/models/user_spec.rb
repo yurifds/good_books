@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe User do
 
   context "Relations" do
-    it { expect(subject).to have_many(:reviews) }
+    it { expect(subject).to have_many(:ratings) }
   end
 
   context "Model validations" do

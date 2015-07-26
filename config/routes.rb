@@ -2,7 +2,10 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "home#index"
 
-  resources :books
+  resources :books do
+    resources :ratings, only: [:create, :update]
+  end
+
   resources :categories
 
   get '/manage' => 'manage#index', as: :manage

@@ -18,6 +18,8 @@ gem 'cancancan', '~> 1.10'
 
 gem 'bootstrap-sass'
 
+gem "paperclip", "~> 4.3"
+
 group :test do
   gem 'shoulda'
 end

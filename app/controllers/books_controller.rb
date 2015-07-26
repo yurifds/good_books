@@ -3,6 +3,7 @@ class BooksController < ApplicationController
 
   def index
     @book = Book.new
+    @books = Book.all
   end
 
   def edit
@@ -37,6 +38,6 @@ class BooksController < ApplicationController
 
   def book_params
     params.require(:book)
-      .permit(:title, :author, :category_id, :amazon_id, :description)
+      .permit(:title, :author, :category_id, :amazon_id, :description, :image_book)
   end
 end
