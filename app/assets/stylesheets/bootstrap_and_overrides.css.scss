@@ -18,9 +18,35 @@ body { padding-top: 60px; }
   border-color: rgba(#0d0d0c, 0.98)
 }
 
-hr {
+.thumbnail .caption p{
+  position: relative;
+  height: 33px;
+}
+
+.thumbnail {
+  position: relative;
+  height: 350px;
+}
+
+.thumbnail .caption{
+  position: relative;
+}
+
+.thumbnail-item-detail {
+  position: relative;
+  height: 650px;
+}
+
+hr {  
   margin-top: 20px;
   margin-bottom: 20px;
   border: 0;
-  border-top: 1px solid #969191;
+  border-top: 1px solid #eee;
+}
+
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }

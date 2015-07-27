@@ -15,8 +15,7 @@
     <%= f.select :category_id, Category.all.collect {|category| [ category.name, category.id ] } %>
   </div>
   <div>
-    <%= f.label :amazon_id %>
-    <%= f.text_field :amazon_id %>
+    <%= f.file_field :image_book %>
   </div>
   <div>
     <%= f.label :description %>

@@ -14,18 +14,24 @@ RSpec.describe BooksController do
 
   describe "POST #create" do
     let(:category) { FactoryGirl.create(:category) }
+    let(:uploadFile) do
+      Rack::Test::UploadedFile.new("#{Rails.root}/spec/support/fixtures/test.jpg","image/jpg")
+    end
+
     let(:book_params) do
       {
         book: {
           title: 'Conhecendo Ruby',
           author: 'Eustáquio',
           category_id: category.id,
+          image_book: uploadFile,
           description: 'Livro ruby iniciante'
         }
       }
     end
 
-    context 'with valid params' do
+
+    context 'with valid params' do    
       it 'save a book' do
         expect {post :create, book_params}.to change { Book.count }.by(1)
       end

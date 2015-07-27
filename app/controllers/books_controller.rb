@@ -6,6 +6,12 @@ class BooksController < ApplicationController
     @books = Book.all
   end
 
+  def show
+    @book = Book.find(params[:id])
+    @points_current_user = @book.ratings.where(user_id: current_user.id).first.points
+    @comment = Comment.new
+  end
+
   def edit
     @book = Book.find(params[:id])
   end
@@ -33,6 +39,7 @@ class BooksController < ApplicationController
     @book.destroy
     redirect_to books_path
   end
+
 
   private
 

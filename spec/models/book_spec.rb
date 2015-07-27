@@ -10,6 +10,7 @@ RSpec.describe Book do
     context 'Presence of' do
       it { expect(subject).to validate_presence_of(:title) }
       it { expect(subject).to validate_presence_of(:author) }
+      it { expect(subject).to have_attached_file(:image_book) }
       it { expect(subject).to validate_presence_of(:description) }
     end
   end

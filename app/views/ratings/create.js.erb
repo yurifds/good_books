@@ -1,0 +1,14 @@
+$(document).ready(function(){
+  $('.book_rating').raty({
+    score: <%= @rating.points %>
+    cancel: true,
+    path: '/assets',
+    click: function(score, evt) {
+      $.ajax({
+        url:'/books/<%= @book.id %>/ratings',
+        type: 'POST',
+        data: { points: score }
+      });
+    }
+  });
+});

@@ -1,0 +1,112 @@
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#my_rating_book').raty({
+      score: '<%= @points_current_user %>',
+      cancel: true,
+      path: '/assets',
+      click: function(score, evt) {
+        $.ajax({
+          url:'/books/<%= @book.id %>/ratings',
+          type: 'POST',
+          data: { points: score }
+        });
+      }
+    });
+
+    $('#average_rating').raty({
+      readOnly: true,
+      score: '<%= @book.average_rating %>',
+      path: '/assets'
+    });
+  });
+</script>
+
+<!-- Portfolio Item Heading -->
+<div class="row">
+  <div class="col-lg-12">
+      <h1 class="page-header">
+        <%= @book.title %>
+      </h1>
+  </div>
+</div>
+<!-- /.row -->
+
+<!-- Portfolio Item Row -->
+<div class="row">
+  <div class="col-md-4">
+    <%= image_tag @book.image_book.url(:medium) %>
+    <div id="my_rating_book" style="margin-left: 94px;"></div>
+  </div>
+
+  <div class="col-md-6">
+    <h3><%= @book.title %></h3>
+    <p>
+      <div id="average_rating"></div>
+    </p>
+    <p><%= @book.description %></p>
+    <h3>Adquira o seu em:</h3>
+    <div class="form-group">
+      <%= select_tag "category",
+          options_for_select(Category.all.collect {|category| [ category.name, category.id ] }),
+        class:'btn dropdown-toggle btn-default' %>
+    </div>
+  </div>
+</div>
+
+<div class="well">
+
+    <div class="text-left">
+      <%= form_for [@book, @comment] do |f| %>
+        <%= f.label :body %>
+        <%= f.text_area :body%>
+        <br>
+        <%= f.submit 'Leave a Review' , class: 'btn btn-success'%>
+      <% end %>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-md-12">
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star-empty"></span>
+            Anonymous
+            <span class="pull-right">10 days ago</span>
+            <p>This product was great in terms of quality. I would definitely buy another!</p>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-md-12">
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star-empty"></span>
+            Anonymous
+            <span class="pull-right">12 days ago</span>
+            <p>I've alredy ordered another one!</p>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-md-12">
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star-empty"></span>
+            Anonymous
+            <span class="pull-right">15 days ago</span>
+            <p>I've seen some better than this, but not at this price. I definitely recommend this item.</p>
+        </div>
+    </div>
+
+</div>
