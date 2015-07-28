@@ -24,17 +24,12 @@
   <% @books.each do |book| %>
     <div class="col-md-3 col-sm-6 hero-feature">
         <div class="thumbnail">
-            <%= image_tag book.image_book.url(:thumb) %>
-            <div class="caption">
-                <div id="book_rating_readonly<%= book.id %>"></div>
-                <h4><%= book.title %></h4>
-                <p>
-                  <%= truncate(book.description, length: 50) %>
-                </p>
-                <p>
-                  <%= link_to 'Já leu esse livro ? contribua com a sua avaliação.', book_path(book) %>
-                </p>
-            </div>
+          <%= link_to image_tag(book.image_book.url(:thumb)), book_path(book) %>
+          <div class="caption">
+            <div id="book_rating_readonly<%= book.id %>"></div>
+            <h4><%= truncate(book.title, length: 20) %></h4>
+            <p><%= truncate(book.description, length: 80) %></p>
+          </div>
         </div>
     </div>
   <% end  %>

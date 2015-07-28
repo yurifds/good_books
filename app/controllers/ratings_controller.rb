@@ -1,4 +1,5 @@
 class RatingsController < ApplicationController
+  load_and_authorize_resource
 
   def create
     @rating = book.ratings.where(user_id: current_user.id).first_or_initialize

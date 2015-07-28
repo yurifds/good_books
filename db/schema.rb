@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150727161157) do
+ActiveRecord::Schema.define(version: 20150728173305) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,9 +42,11 @@ ActiveRecord::Schema.define(version: 20150727161157) do
     t.integer  "book_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
 
   add_index "comments", ["book_id"], name: "index_comments_on_book_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "ratings", force: :cascade do |t|
     t.integer  "points",     null: false
@@ -80,6 +82,7 @@ ActiveRecord::Schema.define(version: 20150727161157) do
 
   add_foreign_key "books", "categories"
   add_foreign_key "comments", "books"
+  add_foreign_key "comments", "users"
   add_foreign_key "ratings", "books"
   add_foreign_key "ratings", "users"
 end

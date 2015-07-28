@@ -6,4 +6,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :ratings
+
+
+  def name_and_last_name
+    "#{name} #{last_name}"
+  end
 end

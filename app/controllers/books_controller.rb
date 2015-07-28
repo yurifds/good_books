@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  #load_and_authorize_resource :only => [:index, :edit, :update, :create, :destroy]
   load_and_authorize_resource
 
   def index
@@ -8,7 +9,16 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
-    @points_current_user = @book.ratings.where(user_id: current_user.id).first.points
+
+    if user_signed_in?
+      rating = current_user.ratings.where(user_id: current_user.id, book_id: @book.id).first
+
+      if rating
+        @points_current_user = rating.points
+      end
+    end
+
+    #@points_current_user = @book.ratings.where(user_id: current_user.id).first.points
     @comment = Comment.new
   end
 
@@ -45,6 +55,6 @@ class BooksController < ApplicationController
 
   def book_params
     params.require(:book)
-      .permit(:title, :author, :category_id, :amazon_id, :description, :image_book)
+      .permit(:title, :author, :category_id, :description, :image_book)
   end
 end
