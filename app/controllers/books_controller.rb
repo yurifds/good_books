@@ -2,9 +2,8 @@ class BooksController < ApplicationController
   #load_and_authorize_resource :only => [:index, :edit, :update, :create, :destroy]
   load_and_authorize_resource
 
-  def index
+  def new
     @book = Book.new
-    @books = Book.all
   end
 
   def show
@@ -29,7 +28,7 @@ class BooksController < ApplicationController
   def update
     @book = Book.find(params[:id])
     if @book.update(book_params)
-      redirect_to books_path, notice: 'Book edited successfully'
+      redirect_to root_path, notice: 'Book edited successfully'
     else
       render :edit
     end
@@ -38,16 +37,16 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     if @book.save
-      redirect_to books_path, notice: 'Book registered successfully'
+      redirect_to root_path, notice: 'Book registered successfully'
     else
-      render 'books/index'
+      render 'books/new'
     end
   end
 
   def destroy
     @book = Book.find(params[:id])
     @book.destroy
-    redirect_to books_path
+    redirect_to root_path
   end
 
 

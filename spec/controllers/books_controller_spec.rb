@@ -4,8 +4,8 @@ RSpec.describe BooksController do
 
   login_user_admin
 
-  describe "GET #index" do
-    before { get :index }
+  describe "GET #new" do
+    before { get :new }
 
     it 'assigns a new Book to @book' do
       expect(assigns(:book)).to be_a_new(Book)
@@ -31,21 +31,21 @@ RSpec.describe BooksController do
     end
 
 
-    context 'with valid params' do    
+    context 'with valid params' do
       it 'save a book' do
         expect {post :create, book_params}.to change { Book.count }.by(1)
       end
-      it 'redirect to book index' do
+      it 'redirect to home' do
         post :create, book_params
-        expect(response).to redirect_to(books_path)
+        expect(response).to redirect_to(root_path)
       end
     end
 
     context 'with invalid params' do
-      it 'render index teamplate' do
+      it 'render new teamplate' do
         book_params[:book].merge!(title: '')
         post :create, book_params
-        expect(response).to render_template(:index)
+        expect(response).to render_template(:new)
       end
     end
   end
@@ -84,9 +84,9 @@ RSpec.describe BooksController do
         expect { put :update, params }.to change(edit_book, :author)
       end
 
-      it 'redirect to book index' do
+      it 'redirect to home#index' do
         put :update, params
-        expect(response).to redirect_to(books_path)
+        expect(response).to redirect_to(root_path)
       end
     end
 

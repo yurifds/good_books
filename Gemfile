@@ -20,6 +20,8 @@ gem 'bootstrap-sass'
 
 gem "paperclip", "~> 4.3"
 
+gem 'acts_as_commentable_with_threading'
+
 group :test do
   gem 'shoulda'
 end

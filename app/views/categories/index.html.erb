@@ -1,4 +1,4 @@
-<h1>Manager Categories</h1>
+<h3>Gerenciar categorias</h3>
 <hr>
 <%= render 'form_errors', record:@category %>
 
@@ -7,16 +7,16 @@
     <%= f.label :name %>
     <%= f.text_field :name, class: "form-control" %>
   </div>
-  <%= f.submit 'Add category', class: "btn btn-primary" %>
+  <%= f.submit 'Adicionar categoria', class: "btn btn-primary" %>
 <% end %>
 
 <br/><br/>
 <% if @categories && !@categories.empty? %>
-  <table border="1">
+  <table class="table table-condensed">
     <tr>
-      <th> Name </th>
-      <th> Edit </th>
-      <th> Remove </th>
+      <th> Nome da categoria </th>
+      <th> Editar categoria </th>
+      <th> Remover categoria</th>
     </tr>
     <%= render @categories %>
   </table>

@@ -3,14 +3,16 @@
     <a class="navbar-brand" href="#">GoodBooks4Devs</a>
     <%= form_tag books_path, method: :get,
           class: "navbar-form navbar-left",role:'search' do %>
-      <div class="form-group">
-        <%= select_tag "category",
-            options_for_select(Category.all.collect {|category| [ category.name, category.id ] }),
-          class:'btn dropdown-toggle btn-default' %>
-        <%= text_field_tag(:search,params[:search],
-              placeholder: "Search book", class: "form-control") %>
-      </div>
-      <%= link_to 'Search', new_category_path, class:'btn btn-default' %>
+          <%= select_tag "category",
+              options_for_select(Category.all.collect {|category| [ category.name, category.id ] }),
+            class:'btn dropdown-toggle btn-default' %>
+          <div class="input-group">
+            <%= text_field_tag(:search,params[:search],
+                  placeholder: "Search book", class: "form-control") %>
+            <span class="input-group-btn">
+              <%= link_to 'Buscar', new_category_path, class:'btn btn-default' %>
+            </span>
+          </div>
     <% end %>
 
     <% if user_signed_in? %>
@@ -21,8 +23,8 @@
                 <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <% if can?(:manage, :all)%>
-              <li><%= link_to 'Manage books', books_path %></li>
-              <li><%= link_to 'Manage categories', categories_path %></li>
+              <li><%= link_to 'Adicionar novo livro', new_book_path %></li>
+              <li><%= link_to 'Gerenciar categorias', categories_path %></li>
             <% end  %>
             <li><%= link_to 'Logout', destroy_user_session_path, method: 'delete' %></li>
           </ul>
