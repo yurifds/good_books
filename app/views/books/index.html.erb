@@ -1,28 +1,34 @@
 <h1>Manage Books</h1>
+<hr>
 <%= render 'form_errors', record:@book %>
 
-<%= form_for @book ,:html => { :multipart => true } do |f| %>
-  <div>
+<%= form_for @book ,:html => { :multipart => true },class: "form-horizontal" do |f| %>
+  <div class="form-group">
     <%= f.label :title %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class: "form-control" %>
   </div>
-  <div>
+  <div class="form-group">
+    <iv>
+  <div class="form-group">
     <%= f.label :author %>
-    <%= f.text_field :author %>
+    <%= f.text_field :author, class: "form-control" %>
   </div>
-  <div>
+  <div class="form-group">
     <%= f.label :category %>
-    <%= f.select :category_id, Category.all.collect {|category| [ category.name, category.id ] } %>
+    <%= f.select :category_id,
+        Category.all.collect {|category| [ category.name, category.id ] },
+              {include_blank: true}, { :class => 'form-control' } %>
   </div>
-  <div>
+  <div class="form-group">
+    <%= f.label :image_book %>
     <%= f.file_field :image_book %>
+     <p class="help-block">Selecione uma imagem.</p>
   </div>
-  <br>
-  <div>
+  <div class="form-group">
     <%= f.label :description %>
-    <%= f.text_area :description %>
+    <%= f.text_area :description, rows:"3", class:"form-control"%>
   </div>
-  <%= f.submit 'Add book'%>
+  <%= f.submit 'Add book',class: "btn btn-primary"%>
 <% end %>
 
 <br/><br/>

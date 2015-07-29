@@ -32,7 +32,7 @@
 <!-- /.row -->
 
 <!-- Portfolio Item Row -->
-<div class="row">
+<div class="row" style="height:430px">
   <div class="col-md-4">
     <%= image_tag @book.image_book.url(:medium) %>
     <% if user_signed_in? %>
@@ -46,7 +46,11 @@
 
   <div class="col-md-6">
     <h3><%= @book.title %></h3>
-    <p><div id="average_rating"></div></p>
+    <p>
+      <div id="average_rating">
+      </div>
+      <%= link_to @book.amount_of_ratings %>
+    </p>
     <p><%= @book.description %></p>
     <h3>Adquira o seu em:</h3>
     <div class="form-group">
@@ -56,30 +60,29 @@
     </div>
   </div>
 </div>
-
 <div class="well">
   <% if user_signed_in?  %>
     <div class="text-left">
       <%= form_for [@book, @comment] do |f| %>
-        <%= f.label :body %>
-        <%= f.text_area :body %>
-        <br>
+        <div class="form-group">
+          <%= f.label :body %>
+          <%= f.text_area :body, class: 'form-control', rows: '3'%>
+        </div>
         <%= f.submit 'Deixe um comentário' , class: 'btn btn-success'%>
       <% end %>
     </div>
   <% else %>
     <%= link_to 'Logue para comentar', new_user_session_path %>
   <% end %>
-
     <hr>
     <% @book.comments.each do |comment| %>
       <div class="row">
           <div class="col-md-12">
-            <%= comment.user.name_and_last_name %>
+            <h4><%= comment.user.name_and_last_name %></h4>
             <span class="pull-right"><%= time_ago_in_words(comment.created_at) %> Ago</span>
             <p><%= comment.body %></p>
           </div>
       </div>
+      <hr>
     <% end %>
-    <hr>
 </div>

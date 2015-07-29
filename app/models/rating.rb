@@ -3,4 +3,5 @@ class Rating < ActiveRecord::Base
   belongs_to :book
 
   validates_presence_of :points
+
 end
