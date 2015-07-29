@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150728173305) do
+ActiveRecord::Schema.define(version: 20150729225706) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,14 +38,20 @@ ActiveRecord::Schema.define(version: 20150728173305) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.text     "body",       null: false
-    t.integer  "book_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "user_id"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.string   "title"
+    t.text     "body"
+    t.string   "subject"
+    t.integer  "user_id",          null: false
+    t.integer  "parent_id"
+    t.integer  "lft"
+    t.integer  "rgt"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "comments", ["book_id"], name: "index_comments_on_book_id", using: :btree
+  add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "ratings", force: :cascade do |t|
@@ -81,8 +87,6 @@ ActiveRecord::Schema.define(version: 20150728173305) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "books", "categories"
-  add_foreign_key "comments", "books"
-  add_foreign_key "comments", "users"
   add_foreign_key "ratings", "books"
   add_foreign_key "ratings", "users"
 end

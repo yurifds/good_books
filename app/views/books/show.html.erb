@@ -19,7 +19,7 @@
       path: '/assets'
     });
 
-    <% @book.comments.each do |comment| %>
+    <% @book.comment_threads.each do |comment| %>
         $('#rating_user_in_comment<%= comment.id %>').raty({
           score : '<%= comment.user.rating_by_user(@book) %>',
           readOnly : true,
@@ -87,7 +87,7 @@
     <%= link_to 'Logue para comentar', new_user_session_path %>
   <% end %>
     <hr>
-    <% @book.comments.each do |comment| %>
+    <% @book.comment_threads.each do |comment| %>
       <div class="row">
           <div class="col-md-12">
             <div class="form-group">
