@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
 
   has_many :ratings
 
+  acts_as_voter
+
   def name_and_last_name
     "#{name} #{last_name}"
   end

@@ -16,6 +16,16 @@ class CommentsController < ApplicationController
     redirect_to book_path(@book)
   end
 
+  def like
+    comment = Comment.find(params[:id])
+    if current_user.voted_for? comment
+      comment.unliked_by current_user
+    else
+      comment.liked_by current_user
+    end
+    redirect_to root_path
+  end
+
   def comment_params
     params.require(:comment)
       .permit(:body, :commentable_id, :commentable_type)

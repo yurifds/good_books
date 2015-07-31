@@ -21,6 +21,7 @@ gem 'bootstrap-sass'
 gem "paperclip", "~> 4.3"
 
 gem 'acts_as_commentable_with_threading'
+gem 'acts_as_votable', '~> 0.10.0'
 
 group :test do
   gem 'shoulda'
