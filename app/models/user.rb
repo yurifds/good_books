@@ -12,7 +12,14 @@ class User < ActiveRecord::Base
   end
 
   def rating_by_user(book)
-    points = ratings.where(user_id: id, book_id: book.id).first.points
+    rating = ratings.where(user_id: id, book_id: book.id).first
+
+    #if the user doesn't rating return 0 points
+    if rating
+      rating.points
+    else
+      0
+    end
   end
 
 end

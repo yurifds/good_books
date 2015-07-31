@@ -1,41 +1,13 @@
+
 <script type="text/javascript">
-  $(document).ready(function(){
-    $('#my_rating_book').raty({
-      score: '<%= @points_current_user %>',
-      cancel: true,
-      path: '/assets',
-      click: function(score, evt) {
-        $.ajax({
-          url:'/books/<%= @book.id %>/ratings',
-          type: 'POST',
-          data: { points: score ? score : 0 }
-        });
-      }
-    });
-
-    $('#average_rating').raty({
-      readOnly: true,
-      score: '<%= @book.average_rating %>',
-      path: '/assets'
-    });
-
-    <% @book.comment_threads.each do |comment| %>
-        $('#rating_user_in_comment<%= comment.id %>').raty({
-          score : '<%= comment.user.rating_by_user(@book) %>',
-          readOnly : true,
-          halfShow : true,
-          path: '/assets'
-        });
-    <% end %>
-  });
+  <%= render 'show.js.erb'%>
 </script>
 
-<!-- Portfolio Item Heading -->
 <div class="row">
   <div class="col-lg-12">
-      <h1 class="page-header">
-        <%= @book.title %>
-      </h1>
+    <h1 class="page-header">
+      <%= @book.title %>
+    </h1>
   </div>
 </div>
 <!-- /.row -->
@@ -87,17 +59,6 @@
     <%= link_to 'Logue para comentar', new_user_session_path %>
   <% end %>
     <hr>
-    <% @book.comment_threads.each do |comment| %>
-      <div class="row">
-          <div class="col-md-12">
-            <div class="form-group">
-              <b><%= comment.user.name_and_last_name %></b>
-              <div id="rating_user_in_comment<%= comment.id %>" class="comment-username"></div>
-            </div>
-            <span class="pull-right"><%= time_ago_in_words(comment.created_at) %> Ago</span>
-            <p><%= comment.body %></p>
-          </div>
-      </div>
-      <hr>
-    <% end %>
+    <!-- Partial of comments -->
+    <%= render @book.root_comments %>
 </div>

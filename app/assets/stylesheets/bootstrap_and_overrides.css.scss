@@ -55,9 +55,6 @@ h6, .h6 {
   display: inline;
 }
 
-#comment_body {
-  width: 28%;
-}
 
 .form-control {
   width: 290px;
@@ -83,4 +80,12 @@ h6, .h6 {
 
 .navbar-form {
   margin-left: 273px;
+}
+
+.reply-comment {
+  display: none;
+  margin-left: 26px;
+  margin-top: 11px;
+  border-left: 1px solid #ccc;
+  padding: 6px 12px;
 }

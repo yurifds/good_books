@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <b><%= comment.user.name_and_last_name %></b>
+        <div id="rating_user_in_comment<%= comment.id %>" class="comment-username"></div>
+      </div>
+      <span class="pull-right"><%= time_ago_in_words(comment.created_at) %> Ago</span>
+      <p><%= comment.body %></p>
+      <a href="#" id="reply<%= comment.id %>">Responder</a>
+      <% if comment.has_children? %>
+        <a href="#" id="allreplys<%= comment.id %>">Ver mais respostas</a>
+      <% end %>
+      <div id="reply-comment<%= comment.id %>" class="reply-comment">
+        <%= form_for Comment.new, url: reply_path(@book,comment) do |f| %>
+          <div class="input-group" style="width: 552px;">
+            <%= f.text_field :body, class: 'form-control'%>
+            <div class="input-group-btn">
+              <%= f.submit 'Postar resposta', class:'btn btn-default' %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div id="comment-replys<%= comment.id %>" class="reply-comment">
+        <% comment.children.each do |comment_children| %>
+          <div class="form-group">
+            <b><%= comment_children.user.name_and_last_name %></b>
+            <div id="rating_user_in_comment<%= comment_children.id %>" class="comment-username"></div>
+            <span class="pull-right"><%= time_ago_in_words(comment_children.created_at) %> Ago</span>
+            <p><%= comment_children.body %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+</div>
+<hr>

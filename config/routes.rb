@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   resources :categories
 
-  get '/manage' => 'manage#index', as: :manage
+  post '/reply/:book_id/:id' => 'comments#create_reply', as: :reply
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
