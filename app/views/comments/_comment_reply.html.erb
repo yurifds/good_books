@@ -1,0 +1,6 @@
+<div class="form-group">
+  <b><%= comment_children.user.name_and_last_name %></b>
+  <div id="rating_user_in_comment<%= comment_children.id %>" class="comment-username"></div>
+  <span class="pull-right"><%= time_ago_in_words(comment_children.created_at) %> Ago</span>
+  <p><%= comment_children.body %></p>
+</div>

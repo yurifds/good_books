@@ -4,16 +4,20 @@ class CommentsController < ApplicationController
     @book = Book.find(params[:book_id])
     @comment = Comment.build_from( @book, current_user.id, comment_params[:body] )
     @comment.save
-    redirect_to book_path(@book)
+    respond_to do |format|
+      format.js
+    end
   end
 
   def create_reply
-    root_comment = Comment.find(params[:id])
+    @root_comment = Comment.find(params[:id])
     @book = Book.find(params[:book_id])
-    new_reply = Comment.build_from(@book, current_user.id, comment_params[:body])
-    new_reply.parent_id = root_comment.id
-    new_reply.save
-    redirect_to book_path(@book)
+    @new_reply = Comment.build_from(@book, current_user.id, comment_params[:body])
+    @new_reply.parent_id = @root_comment.id
+    @new_reply.save
+    respond_to do |format|
+      format.js
+    end
   end
 
   def like

@@ -47,7 +47,7 @@
 <div class="well">
   <% if user_signed_in?  %>
     <div class="text-left">
-      <%= form_for [@book, @comment] do |f| %>
+      <%= form_for [@book, @comment], remote: true do |f| %>
         <div class="form-group">
           <%= f.label :body %>
           <%= f.text_area :body, class: 'form-control', rows: '3'%>
@@ -59,6 +59,7 @@
     <%= link_to 'Logue para comentar', new_user_session_path %>
   <% end %>
     <hr>
-    <!-- Partial of comments -->
-    <%= render @book.root_comments %>
+    <div id="comments">
+      <%= render @book.root_comments %>
+    </div>
 </div>

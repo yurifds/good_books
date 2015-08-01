@@ -1,0 +1,27 @@
+<% if @new_reply.new_record? %>
+  $("#reply_to_comment<%= @root_comment.id %>").focus();
+<% else %>
+  $("#comment-replys<%= @root_comment.id %>").show();
+  $("#comment-replys<%= @root_comment.id %>").append("<%= escape_javascript(render 'comments/comment_reply', comment_children: @new_reply) %>");
+
+  $("#amount_replys<%= @root_comment.id %>").html('<a href="#" id="allreplys<%= @root_comment.id %>"><%= @root_comment.children.size %> respostas</a>')
+
+  $("#reply<%= @root_comment.id %>").click(function(e){
+    e.preventDefault();
+    $("#reply-comment<%= @root_comment.id %>").toggle();
+  });
+
+  $("#allreplys<%= @root_comment.id %>").click(function(e){
+    e.preventDefault();
+    $("#comment-replys<%= @root_comment.id %>").toggle();
+  });
+
+  $('#rating_user_in_comment<%= @new_reply.id %>').raty({
+    score : '<%= @new_reply.user.rating_by_user(@book) %>',
+    readOnly : true,
+    halfShow : true,
+    path: '/assets'
+  });
+
+  $("#reply_to_comment<%= @root_comment.id %>").val('')
+<% end %>

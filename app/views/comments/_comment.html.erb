@@ -13,19 +13,22 @@
       <a href="#" id="reply<%= comment.id %>">Responder</a>
     <% end %>
 
-    <% if comment.has_children? %>
-      <a href="#" id="allreplys<%= comment.id %>"><%=comment.children.size %> respostas</a>
-    <% end %>
+    <div id="amount_replys<%= comment.id %>">
+      <% if comment.has_children? %>
+        <a href="#" id="allreplys<%= comment.id %>"><%=comment.children.size %> respostas</a>
+      <% end %>
+    </div>
 
     <span class="glyphicon glyphicon-thumbs-up"></span>
     <a href="#"><%= comment.get_likes.size %></a>
 
     <% if user_signed_in? %>
       <div id="reply-comment<%= comment.id %>" class="reply-comment">
-        <%= form_for Comment.new, url: reply_path(@book,comment) do |f| %>
+        <%= form_for Comment.new, url: reply_path( @book,comment ),
+              remote: true do |f| %>
           <div class="form-group">
             <%= f.label :body %>
-            <%= f.text_area :body, class: 'form-control', rows: '1'%>
+            <%= f.text_area :body, class: 'form-control',rows: '1', :id => "reply_to_comment#{comment.id}"%>
           </div>
           <%= f.submit 'Responder' , class: 'btn btn-primary'%>
         <% end %>
@@ -34,12 +37,7 @@
 
     <div id="comment-replys<%= comment.id %>" class="reply-comment">
       <% comment.children.each do |comment_children| %>
-        <div class="form-group">
-          <b><%= comment_children.user.name_and_last_name %></b>
-          <div id="rating_user_in_comment<%= comment_children.id %>" class="comment-username"></div>
-          <span class="pull-right"><%= time_ago_in_words(comment_children.created_at) %> Ago</span>
-          <p><%= comment_children.body %></p>
-        </div>
+        <%= render 'comments/comment_reply', comment_children: comment_children%>
       <% end %>
     </div>
   </div>

@@ -1,0 +1,23 @@
+<% if @comment.new_record? %>
+  $("#comment_body").focus();
+<% else %>
+  $('div#comments').append("<%= escape_javascript(render @comment) %>");
+
+  $("#reply<%= @comment.id %>").click(function(e){
+    e.preventDefault();
+    $("#reply-comment<%= @comment.id %>").toggle();
+  });
+
+  $("#allreplys<%= @comment.id %>").click(function(e){
+    e.preventDefault();
+    $("#comment-replys<%= @comment.id %>").toggle();
+  });
+
+  $('#rating_user_in_comment<%= @comment.id %>').raty({
+    score : '<%= @comment.user.rating_by_user(@book) %>',
+    readOnly : true,
+    halfShow : true,
+    path: '/assets'
+  });
+  $("#comment_body").val('')
+<% end %>
