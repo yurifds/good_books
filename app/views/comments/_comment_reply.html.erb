@@ -2,5 +2,16 @@
   <b><%= comment_children.user.name_and_last_name %></b>
   <div id="rating_user_in_comment<%= comment_children.id %>" class="comment-username"></div>
   <span class="pull-right"><%= time_ago_in_words(comment_children.created_at) %> Ago</span>
-  <p><%= comment_children.body %></p>
+  <div style="display:block">
+    <p class="comment-options"><%= comment_children.body %></p>
+    <% if user_signed_in? %>
+        <div class="comment-options">
+          <%= link_to 'Gostei', comment_like_path(comment_children),id: "like-link#{comment_children.id}", :method=> :post, remote: true%>
+        </div>
+        <div class="comment-options">
+          <span class="glyphicon glyphicon-thumbs-up"></span>
+          <div id="like<%= comment_children.id %>" style="display:inline"><%= comment_children.get_likes.size %></div>
+        </div>
+    <% end %>
+  </div>
 </div>

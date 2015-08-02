@@ -8,19 +8,28 @@
     <span class="pull-right"><%= time_ago_in_words(comment.created_at) %> Ago</span>
 
     <p><%= comment.body %></p>
-    <% if user_signed_in? %>
-      <%= link_to 'Curtir', comment_like_path(comment), :method=> :post%>
-      <a href="#" id="reply<%= comment.id %>">Responder</a>
-    <% end %>
 
-    <div id="amount_replys<%= comment.id %>">
-      <% if comment.has_children? %>
-        <a href="#" id="allreplys<%= comment.id %>"><%=comment.children.size %> respostas</a>
+    <div>
+      <% if user_signed_in? %>
+          <div class="comment-options">
+            <%= link_to 'Gostei', comment_like_path(comment),id: "like-link#{comment.id}", :method=> :post, remote: true%>
+          </div>
+          <div class="comment-options">
+            <a href="#" id="reply<%= comment.id %>">Responder</a>
+          </div>
       <% end %>
+
+      <div id="amount_replys<%= comment.id %>" class="comment-options">
+        <% if comment.has_children? %>
+          <a href="#" id="allreplys<%= comment.id %>"><%=comment.children.size %> Respostas</a>
+        <% end %>
+      </div>
+      <div class="comment-options">
+        <span class="glyphicon glyphicon-thumbs-up"></span>
+        <div id="like<%= comment.id %>" style="display:inline"><%= comment.get_likes.size %></div>
+      </div>
     </div>
 
-    <span class="glyphicon glyphicon-thumbs-up"></span>
-    <a href="#"><%= comment.get_likes.size %></a>
 
     <% if user_signed_in? %>
       <div id="reply-comment<%= comment.id %>" class="reply-comment">

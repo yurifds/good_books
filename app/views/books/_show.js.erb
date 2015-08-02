@@ -35,5 +35,11 @@ $(document).ready(function(){
         e.preventDefault();
         $("#comment-replys<%= comment.id %>").toggle();
       });
+
+      <% if current_user.voted_for? comment %>
+        $("#like-link<%= comment.id %>").text('Desfazer');
+      <% else %>
+        $("#like-link<%= comment.id %>").text('Gostei');
+      <% end %>
   <% end %>
 });

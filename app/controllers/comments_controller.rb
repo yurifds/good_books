@@ -15,19 +15,23 @@ class CommentsController < ApplicationController
     @new_reply = Comment.build_from(@book, current_user.id, comment_params[:body])
     @new_reply.parent_id = @root_comment.id
     @new_reply.save
+
     respond_to do |format|
       format.js
     end
   end
 
   def like
-    comment = Comment.find(params[:id])
-    if current_user.voted_for? comment
-      comment.unliked_by current_user
+    @comment_like = Comment.find(params[:id])
+    if current_user.voted_for? @comment_like
+      @comment_like.unliked_by current_user
     else
-      comment.liked_by current_user
+      @comment_like.liked_by current_user
     end
-    redirect_to root_path
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   def comment_params

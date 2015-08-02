@@ -1,0 +1,12 @@
+<% if @comment_like.new_record? %>
+  $("#like-link<%= @comment_like.id %>").focus();
+<% else %>
+  $("#like<%= @comment_like.id %>").html('<%= @comment_like.get_likes.size %>');
+  var text = $("#like-link<%= @comment_like.id %>").text();
+
+  if (text == 'Gostei') {
+    $("#like-link<%= @comment_like.id %>").text('Desfazer');
+  } else {
+    $("#like-link<%= @comment_like.id %>").text('Gostei');
+  }
+<% end %>

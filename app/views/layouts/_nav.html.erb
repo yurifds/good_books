@@ -5,13 +5,15 @@
           class: "navbar-form navbar-left",role:'search' do %>
           <%= select_tag "category",
               options_for_select(Category.all.collect {|category| [ category.name, category.id ] }),
-            class:'btn dropdown-toggle btn-default' %>
+              class:'btn dropdown-toggle btn-default' %>
           <div class="input-group">
             <%= text_field_tag(:search,params[:search],
                   placeholder: "Search book", class: "form-control") %>
-            <span class="input-group-btn">
-              <%= link_to 'Buscar', new_category_path, class:'btn btn-default' %>
-            </span>
+            <div class="input-group-btn">
+              <%= link_to new_category_path, class:'btn btn-default' do %>
+                <span class="glyphicon glyphicon-search"></span>
+              <% end %>
+            </div>
           </div>
     <% end %>
 

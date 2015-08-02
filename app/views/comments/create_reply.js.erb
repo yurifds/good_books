@@ -15,7 +15,7 @@
     e.preventDefault();
     $("#comment-replys<%= @root_comment.id %>").toggle();
   });
-
+  //apply rating for new comment
   $('#rating_user_in_comment<%= @new_reply.id %>').raty({
     score : '<%= @new_reply.user.rating_by_user(@book) %>',
     readOnly : true,

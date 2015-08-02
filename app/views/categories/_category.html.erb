@@ -1,5 +1,13 @@
 <tr>
   <td> <%= category.name %> </td>
-  <td> <%= link_to 'Editar', edit_category_path(category),class: "btn btn-primary" %> </td>
-  <td> <%= link_to 'Remover', category, class: "btn btn-primary",method: :delete, data: { confirm: "Tem certeza disso?" } %> </td>
+  <td>
+    <%= link_to edit_category_path(category), class: "btn btn-primary" do %>
+      <span class="glyphicon glyphicon-pencil"></span>
+    <% end  %>
+  </td>
+  <td>
+    <%= link_to category, class: "btn btn-primary",method: :delete, data: { confirm: "Tem certeza disso?" } do %>
+      <span class="glyphicon glyphicon-trash"></span>
+    <% end  %>
+  </td>
 </tr>
