@@ -36,7 +36,19 @@ $(document).ready(function(){
         $("#comment-replys<%= comment.id %>").toggle();
       });
 
-      <% if current_user.voted_for? comment %>
+      //hide form_edit_comment in onload page
+      $("#form_edit_comment<%= comment.id %>").hide();
+
+      //comment edit event
+      $("#edit_comment<%= comment.id %>").click(function(e){
+        e.preventDefault();
+        $("#form_edit_comment<%= comment.id %>").toggle("show");
+        var comment = $("#static-comment<%= comment.id %>").text();
+        $("#form_edit_comment_input<%= comment.id %>").val(comment)
+        $("#static-comment<%= comment.id %>").toggle("hide");
+      });
+
+      <% if (current_user && current_user.voted_for?(comment)) %>
         $("#like-link<%= comment.id %>").text('Desfazer');
       <% else %>
         $("#like-link<%= comment.id %>").text('Gostei');

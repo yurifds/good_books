@@ -1,12 +1,31 @@
 <div class="form-group">
   <b><%= comment_children.user.name_and_last_name %></b>
   <div id="rating_user_in_comment<%= comment_children.id %>" class="comment-username"></div>
-  <span class="pull-right"><%= time_ago_in_words(comment_children.created_at) %> Ago</span>
+
+  <span class="pull-right">
+    <% if can_delete_comment?(comment_children)%>
+      <%= link_to "#",id: "edit_comment#{comment_children.id}" do %>
+        <span class="glyphicon glyphicon-pencil"></span>
+      <% end %>
+      <%= link_to book_comment_path(@book, comment_children),
+            method: :delete, data: { confirm: "Tem certeza disso?" },
+              remote: true do %>
+        <span class="glyphicon glyphicon-trash"></span>
+      <% end %>
+    <% end %>
+    <%= time_ago_in_words(comment_children.created_at) %> Ago
+  </span>
+
   <div style="display:block">
-    <p class="comment-options"><%= comment_children.body %></p>
+    <%= form_for [@book, comment_children],
+          :html => { :id => "form_edit_comment#{comment_children.id}"},
+            remote: true do |f| %>
+      <%= f.text_field :body, class: "form-control",id: "form_edit_comment_input#{comment_children.id}"  %>
+    <% end %>
+    <p class="comment-options" id="static-comment<%= comment_children.id %>"><%= comment_children.body %></p>
     <% if user_signed_in? %>
         <div class="comment-options">
-          <%= link_to 'Gostei', comment_like_path(comment_children),id: "like-link#{comment_children.id}", :method=> :post, remote: true%>
+          <%= link_to 'Gostei', comment_like_path(comment_children), id: "like-link#{comment_children.id}", :method=> :post, remote: true %>
         </div>
         <div class="comment-options">
           <span class="glyphicon glyphicon-thumbs-up"></span>

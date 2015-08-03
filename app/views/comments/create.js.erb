@@ -12,7 +12,17 @@
     e.preventDefault();
     $("#comment-replys<%= @comment.id %>").toggle();
   });
-  
+
+  $("#form_edit_comment<%= @comment.id %>").hide();
+
+  $("#edit_comment<%= @comment.id %>").click(function(e){
+    e.preventDefault();
+    $("#form_edit_comment<%= @comment.id %>").toggle("show");
+    var comment = $("#static-comment<%= @comment.id %>").text();
+    $("#form_edit_comment_input<%= @comment.id %>").val(comment)
+    $("#static-comment<%= @comment.id %>").toggle("hide");
+  });
+
   //apply rating for new comment
   $('#rating_user_in_comment<%= @comment.id %>').raty({
     score : '<%= @comment.user.rating_by_user(@book) %>',

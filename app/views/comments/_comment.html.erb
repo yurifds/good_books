@@ -1,13 +1,30 @@
-<div class="row">
+<div class="row" id="row<%= comment.id %>">
   <div class="col-md-12">
     <div class="form-group">
       <b><%= comment.user.name_and_last_name %></b>
       <div id="rating_user_in_comment<%= comment.id %>" class="comment-username"></div>
+      <% if can_delete_comment?(comment)%>
+          <span class="pull-right">
+            <%= link_to "#",id: "edit_comment#{comment.id}" do %>
+              <span class="glyphicon glyphicon-pencil"></span>
+            <% end %>
+            <%= link_to book_comment_path(@book, comment),
+                  method: :delete, data: { confirm: "Tem certeza disso?" },
+                    remote: true do %>
+              <span class="glyphicon glyphicon-trash"></span>
+            <% end %>
+            <%= time_ago_in_words(comment.created_at) %> Ago
+          </span>
+      <% end %>
     </div>
 
-    <span class="pull-right"><%= time_ago_in_words(comment.created_at) %> Ago</span>
+    <%= form_for [@book, comment],
+          :html => { :id => "form_edit_comment#{comment.id}"},
+            remote: true do |f| %>
+      <%= f.text_field :body, class: "form-control", id: "form_edit_comment_input#{comment.id}"  %>
+    <% end %>
 
-    <p><%= comment.body %></p>
+    <p id="static-comment<%= comment.id %>"><%= comment.body %></p>
 
     <div>
       <% if user_signed_in? %>
@@ -29,7 +46,6 @@
         <div id="like<%= comment.id %>" style="display:inline"><%= comment.get_likes.size %></div>
       </div>
     </div>
-
 
     <% if user_signed_in? %>
       <div id="reply-comment<%= comment.id %>" class="reply-comment">

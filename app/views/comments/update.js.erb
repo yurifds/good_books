@@ -1,0 +1,7 @@
+  <%if @comment.errors.any?  %>
+    $("#form_edit_comment_input<%= @comment.id %>").focus();
+  <% else %>
+    $("#form_edit_comment<%= @comment.id %>").hide();
+    $("#static-comment<%= @comment.id %>").show();
+    $("#static-comment<%= @comment.id %>").text("<%= @comment.body %>")
+  <% end %>

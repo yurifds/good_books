@@ -12,9 +12,29 @@ class CommentsController < ApplicationController
   def create_reply
     @root_comment = Comment.find(params[:id])
     @book = Book.find(params[:book_id])
+    binding.pry
     @new_reply = Comment.build_from(@book, current_user.id, comment_params[:body])
     @new_reply.parent_id = @root_comment.id
     @new_reply.save
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def update
+    @book = Book.find(params[:book_id])
+    @comment = @book.comment_threads.find(params[:id])
+    @comment.update(comment_params)
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def destroy
+    @book = Book.find(params[:book_id])
+    @comment = @book.comment_threads.find(params[:id])
+    @comment.destroy
 
     respond_to do |format|
       format.js
@@ -34,8 +54,11 @@ class CommentsController < ApplicationController
     end
   end
 
+
+  private
+
   def comment_params
     params.require(:comment)
-      .permit(:body, :commentable_id, :commentable_type)
+      .permit(:body)
   end
 end
