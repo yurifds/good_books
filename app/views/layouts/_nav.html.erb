@@ -1,16 +1,14 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">GoodBooks4Devs</a>
-    <%= form_tag books_path, method: :get,
-          class: "navbar-form navbar-left",role:'search' do %>
-          <%= select_tag "category",
-              options_for_select(Category.all.collect {|category| [ category.name, category.id ] }),
-              class:'btn dropdown-toggle btn-default' %>
+    <%= search_form_for @search, url: search_books_path, method: :post,
+          class: "navbar-form navbar-left" do |f|%>
           <div class="input-group">
-            <%= text_field_tag(:search,params[:search],
-                  placeholder: "Search book", class: "form-control") %>
+            <%= f.text_field :title_or_author_or_ISBN_cont,
+                  placeholder: "Pesquise por Título, Autor ou ISBN.",
+                    class: "form-control" %>
             <div class="input-group-btn">
-              <%= link_to new_category_path, class:'btn btn-default' do %>
+              <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
                 <span class="glyphicon glyphicon-search"></span>
               <% end %>
             </div>

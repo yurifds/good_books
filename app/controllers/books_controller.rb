@@ -2,6 +2,23 @@ class BooksController < ApplicationController
   #load_and_authorize_resource :only => [:index, :edit, :update, :create, :destroy]
   load_and_authorize_resource
 
+  def index
+    @search = Book.search(params[:q])
+    @books = @search.result
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  def autocomplete_title
+    @search = Book.search(title_cont: params[:title])
+    @books = @search.result
+    respond_to do |format|
+      format.json { render :json => @books.to_json(:methods => [:book_url, :title_truncate]) }
+      format.js
+    end
+  end
+
   def new
     @book = Book.new
   end
@@ -54,6 +71,6 @@ class BooksController < ApplicationController
 
   def book_params
     params.require(:book)
-      .permit(:title, :author, :category_id, :description, :image_book)
+      .permit(:title, :author, :category_id, :description, :image_book, :language, :ISBN)
   end
 end

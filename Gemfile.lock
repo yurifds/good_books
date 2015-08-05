@@ -1,3 +1,14 @@
+GIT
+  remote: git://github.com/activerecord-hackery/ransack.git
+  revision: c06fb77947b24a412aa60d89a3c1a7b78166f2f3
+  specs:
+    ransack (1.6.6)
+      actionpack (>= 3.0)
+      activerecord (>= 3.0)
+      activesupport (>= 3.0)
+      i18n
+      polyamorous (~> 1.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -41,7 +52,7 @@ GEM
       activesupport (>= 4.0)
       awesome_nested_set (>= 3.0)
     acts_as_votable (0.10.0)
-    arel (6.0.2)
+    arel (6.0.3)
     autoprefixer-rails (5.2.1.1)
       execjs
       json
@@ -87,9 +98,11 @@ GEM
     factory_girl_rails (4.5.0)
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
-    globalid (0.3.5)
+    globalid (0.3.6)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
+    isbn_validation (1.2.2)
+      activerecord (>= 3)
     jbuilder (2.3.1)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
@@ -97,6 +110,9 @@ GEM
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
+    jquery-turbolinks (2.1.0)
+      railties (>= 3.1.0)
+      turbolinks
     json (1.8.3)
     libv8 (3.16.14.11)
     loofah (2.0.2)
@@ -119,6 +135,8 @@ GEM
       mime-types
       mimemagic (= 0.3.0)
     pg (0.18.2)
+    polyamorous (1.2.0)
+      activerecord (>= 3.0)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -239,12 +257,15 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   devise
   factory_girl_rails (~> 4.0)
+  isbn_validation
   jbuilder (~> 2.0)
   jquery-rails
+  jquery-turbolinks
   paperclip (~> 4.3)
   pg
   pry-meta
   rails (= 4.2.2)
+  ransack!
   rspec-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

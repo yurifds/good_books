@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: "home#index"
+  root to: "books#index"
 
   resources :books do
+    collection { post :search, to: 'books#index' }
+    collection { get :search, to: 'books#autocomplete_title' }
     resources :ratings
     resources :comments
   end

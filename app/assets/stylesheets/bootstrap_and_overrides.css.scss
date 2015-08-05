@@ -94,3 +94,22 @@ h6, .h6 {
   display: inline;
   margin: 3px;
 }
+
+.list_item_container {
+    width:250px;
+    height: 80px;
+    padding: 5px 0;
+}
+
+.image {
+    width: 72px;
+    height: 52px;
+    margin-right: 10px;
+    float: left;
+}
+
+.description {
+    font-style: italic;
+    font-size: 0.8em;
+    color: gray;
+}

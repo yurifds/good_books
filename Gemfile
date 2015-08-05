@@ -7,21 +7,19 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'therubyracer', platforms: :ruby
-
-
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'cancancan', '~> 1.10'
-
 gem 'bootstrap-sass'
-
 gem "paperclip", "~> 4.3"
-
 gem 'acts_as_commentable_with_threading'
 gem 'acts_as_votable', '~> 0.10.0'
+gem 'isbn_validation'
+gem 'ransack', github: 'activerecord-hackery/ransack'
+gem 'jquery-turbolinks'
 
 group :test do
   gem 'shoulda'

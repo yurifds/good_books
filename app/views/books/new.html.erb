@@ -14,6 +14,15 @@
     <%= f.text_field :author, class: "form-control" %>
   </div>
   <div class="form-group">
+    <%= f.label :ISBN %>
+    <%= f.text_field :ISBN, class: "form-control"%>
+  </div>
+  <div class="form-group">
+    <%= f.label :language %>
+    <%= f.select :language, Book::LANGUAGES,
+              { include_blank: true }, { :class => 'form-control' } %>
+  </div>
+  <div class="form-group">
     <%= f.label :category %>
     <%= f.select :category_id,
         Category.all.collect {|category| [ category.name, category.id ] },

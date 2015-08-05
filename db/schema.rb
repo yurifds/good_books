@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150731165559) do
+ActiveRecord::Schema.define(version: 20150804164742) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 20150731165559) do
     t.string   "image_book_content_type"
     t.integer  "image_book_file_size"
     t.datetime "image_book_updated_at"
+    t.string   "ISBN",                    null: false
+    t.string   "language",                null: false
   end
 
   add_index "books", ["category_id"], name: "index_books_on_category_id", using: :btree

@@ -1,0 +1,10 @@
+$(document).ready(function(){
+  <% @books.each do |book| %>
+      $('#book_rating_readonly<%= book.id %>').raty({
+        score : '<%= book.average_rating %>',
+        readOnly : true,
+        halfShow : true,
+        path: '/assets'
+      });
+  <% end %>
+});
