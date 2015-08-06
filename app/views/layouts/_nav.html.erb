@@ -3,7 +3,7 @@
     <a class="navbar-brand" href="#">GoodBooks4Devs</a>
     <%= search_form_for @search, url: search_books_path, method: :post,
           class: "navbar-form navbar-left" do |f|%>
-          <div class="input-group">
+          <div class="input-group" style="width:500px;">
             <%= f.text_field :title_or_author_or_ISBN_cont,
                   placeholder: "Pesquise por Título, Autor ou ISBN.",
                     class: "form-control" %>

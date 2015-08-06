@@ -14,7 +14,7 @@ class Book < ActiveRecord::Base
 
 
   def title_truncate
-    title.truncate(20)
+    title.truncate(25)
   end
 
   def book_url
