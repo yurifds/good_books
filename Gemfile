@@ -22,6 +22,7 @@ gem 'ransack', github: 'activerecord-hackery/ransack'
 gem 'jquery-turbolinks'
 gem 'invisible_captcha'
 gem 'httparty'
+gem 'will_paginate', '~> 3.0.6'
 
 group :test do
   gem 'shoulda'

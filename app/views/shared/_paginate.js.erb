@@ -1,0 +1,6 @@
+<% if resources.next_page %>
+  alert("Hello! I am an alert box!!");
+<% else %>
+  $(window).off('scroll');
+  $("#endless-scroll").remove();
+<% end %>

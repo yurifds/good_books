@@ -13,7 +13,6 @@ class CommentsController < ApplicationController
   def create_reply
     @root_comment = Comment.find(params[:id])
     @book = Book.find(params[:book_id])
-    binding.pry
     @new_reply = Comment.build_from(@book, current_user.id, comment_params[:body])
     @new_reply.parent_id = @root_comment.id
     @new_reply.save

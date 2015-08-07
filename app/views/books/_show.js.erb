@@ -20,6 +20,8 @@ $(document).ready(function(){
     path: '/assets'
   });
 
+  $('#note').text(<%= @book.average_rating %>)
+
   <% @book.comment_threads.each do |comment| %>
       $('#rating_user_in_comment<%= comment.id %>').raty({
         score : '<%= comment.user.rating_by_user(@book) %>',

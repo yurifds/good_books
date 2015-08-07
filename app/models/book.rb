@@ -15,8 +15,6 @@ class Book < ActiveRecord::Base
   attr_accessor :captcha # virtual attribute, the honeypot
   validates :captcha, invisible_captcha: true
 
-
-
   LANGUAGES = ["Inglês", "Português"]
 
   def title_truncate
@@ -46,6 +44,6 @@ class Book < ActiveRecord::Base
     end
   end
 
-  validates :ISBN, asin: true
-
+  #validate for Asin format
+  validates :ISBN, asin: true, :if => :flgAsin
 end

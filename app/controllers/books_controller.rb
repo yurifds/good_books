@@ -6,9 +6,10 @@ class BooksController < ApplicationController
 
   def index
     @search = Book.search(params[:q])
-    @books = @search.result
+    @books = @search.result.paginate(:page => params[:page], :per_page => 10)
     respond_to do |format|
       format.html
+      format.js
     end
   end
 

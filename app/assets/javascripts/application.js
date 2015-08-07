@@ -14,6 +14,9 @@
 //= require jquery_ujs
 //= require jquery.turbolinks
 //= require jquery-ui
+//= require jquery.raty
+//= require autogrow
 //= require bootstrap
 //= require turbolinks
+//= require bindWithDelay
 //= require_tree

@@ -1,6 +1,9 @@
 <h3>Adicionar livro</h3>
 <hr>
 <%= render 'form_errors', record:@book %>
+<div class="alert alert-info" role="alert">
+  Antes de adicionar um novo livro, busque o no topo do site, pois já pode ter sido cadastrado.
+</div>
 
 <%= form_for @book ,:html => { :multipart => true },class: "form-horizontal" do |f| %>
   <%= f.invisible_captcha :captcha %>

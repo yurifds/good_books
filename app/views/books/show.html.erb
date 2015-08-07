@@ -13,7 +13,7 @@
 <!-- /.row -->
 
 <!-- Portfolio Item Row -->
-<div class="row" style="height:430px">
+<div class="row">
   <div class="col-md-4">
     <%= image_tag @book.image_book.url(:medium) %>
     <% if user_signed_in? %>
@@ -25,14 +25,16 @@
     <% end %>
   </div>
 
-  <div class="col-md-6">
+  <div class="col-md-8">
     <h3><%= @book.title %></h3>
     <h5>Por: <i><%= @book.author %></i></h5>
-    <p>
+    <h5>Idioma: <%= @book.language %></h5>
+    <div style="display:inline-block">
+      <span class="label label-success" id="note"></span>
       <div id="average_rating"></div>
       <%= link_to @book.amount_of_ratings %>
-    </p>
-    <p><%= @book.description %></p>
+    </div>
+    <h5><%= @book.description %></h5>
     <div class="form-group">
       <% if can?(:manage, :all) %>
         <%= link_to edit_book_path(@book), class: 'btn btn-primary' do %>

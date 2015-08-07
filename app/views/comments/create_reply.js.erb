@@ -6,11 +6,6 @@
 
   $("#amount_replys<%= @root_comment.id %>").html('<a href="#" id="allreplys<%= @root_comment.id %>"><%= @root_comment.children.size %> respostas</a>')
 
-  $("#reply<%= @root_comment.id %>").click(function(e){
-    e.preventDefault();
-    $("#reply-comment<%= @root_comment.id %>").toggle();
-  });
-
   $("#allreplys<%= @root_comment.id %>").click(function(e){
     e.preventDefault();
     $("#comment-replys<%= @root_comment.id %>").toggle();
@@ -23,5 +18,14 @@
     path: '/assets'
   });
 
+  $("#edit_comment<%= @new_reply.id %>").click(function(e){
+    e.preventDefault();
+    $("#form_edit_comment<%= @new_reply.id %>").toggle("show");
+    var comment = $("#static-comment<%= @new_reply.id %>").text();
+    $("#form_edit_comment_input<%= @new_reply.id %>").val(comment)
+    $("#static-comment<%= @new_reply.id %>").toggle("hide");
+  });
+
+  $("#form_edit_comment<%= @new_reply.id %>").hide();
   $("#reply_to_comment<%= @root_comment.id %>").val('')
 <% end %>
