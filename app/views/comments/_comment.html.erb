@@ -21,6 +21,7 @@
     <%= form_for [@book, comment],
           :html => { :id => "form_edit_comment#{comment.id}"},
             remote: true do |f| %>
+      <%= f.invisible_captcha :captcha %>
       <%= f.text_field :body, class: "form-control", id: "form_edit_comment_input#{comment.id}"  %>
     <% end %>
 
@@ -51,6 +52,7 @@
       <div id="reply-comment<%= comment.id %>" class="reply-comment">
         <%= form_for Comment.new, url: reply_path( @book,comment ),
               remote: true do |f| %>
+          <%= f.invisible_captcha :captcha %>
           <div class="form-group">
             <%= f.label :body %>
             <%= f.text_area :body, class: 'form-control',rows: '1', :id => "reply_to_comment#{comment.id}"%>

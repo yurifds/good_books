@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
 
   def create
     @book = Book.find(params[:book_id])
@@ -54,11 +55,10 @@ class CommentsController < ApplicationController
     end
   end
 
-
   private
 
   def comment_params
     params.require(:comment)
-      .permit(:body)
+      .permit(:body, :captcha)
   end
 end

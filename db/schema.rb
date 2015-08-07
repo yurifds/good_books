@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150804164742) do
+ActiveRecord::Schema.define(version: 20150806215339) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 20150804164742) do
     t.string   "title"
     t.string   "author"
     t.string   "description"
-    t.integer  "category_id",             null: false
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.string   "image_book_file_name"
@@ -29,15 +28,10 @@ ActiveRecord::Schema.define(version: 20150804164742) do
     t.datetime "image_book_updated_at"
     t.string   "ISBN",                    null: false
     t.string   "language",                null: false
+    t.boolean  "flgAsin"
   end
 
-  add_index "books", ["category_id"], name: "index_books_on_category_id", using: :btree
-
-  create_table "categories", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+  add_index "books", ["ISBN"], name: "index_books_on_ISBN", unique: true, using: :btree
 
   create_table "comments", force: :cascade do |t|
     t.integer  "commentable_id"
@@ -103,7 +97,6 @@ ActiveRecord::Schema.define(version: 20150804164742) do
   add_index "votes", ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope", using: :btree
   add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope", using: :btree
 
-  add_foreign_key "books", "categories"
   add_foreign_key "ratings", "books"
   add_foreign_key "ratings", "users"
 end

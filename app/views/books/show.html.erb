@@ -40,7 +40,7 @@
         <% end %>
         <%= link_to @book, class: 'btn btn-primary', method: :delete, data: { confirm: "Tem certeza que deseja remover esse livro ?" } do %>
           <span class="glyphicon glyphicon-trash"></span>
-        <% end  %>
+        <% end %>
       <% end %>
     </div>
   </div>
@@ -51,6 +51,7 @@
   <% if user_signed_in?  %>
     <div class="text-left">
       <%= form_for [@book, @comment], remote: true do |f| %>
+        <%= f.invisible_captcha :captcha %>
         <div class="form-group">
           <%= f.label :body %>
           <%= f.text_area :body, class: 'form-control', rows: '3'%>

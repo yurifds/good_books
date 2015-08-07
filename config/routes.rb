@@ -9,8 +9,6 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  resources :categories
-
   post '/reply/:book_id/:id' => 'comments#create_reply', as: :reply
   post '/comments/:id/like/' => 'comments#like', as: :comment_like
   # The priority is based upon order of creation: first created -> highest priority.

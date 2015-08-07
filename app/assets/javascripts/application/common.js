@@ -17,7 +17,7 @@ $(document).ready(function(){
       },
     minLength: 3
   }).data( "ui-autocomplete" )._renderItem = function( ul, item ) {
-        var inner_html = '<a href="/books/'+item.id+'"><div class="list_item_container"><div class="image"><img src="' + item.book_url + '"></div><div>' + item.title_truncate + '</div><div class="description">' + item.author + '</div></div></a>';
+        var inner_html = '<a href="/books/'+item.id+'"><div class="list_item_container"><div class="image"><img src="' + item.book_url + '"></div><div>' + item.title_truncate + '</div><div class="author">' + item.author + '</div></div></a>';
         return $( "<li></li>" )
             .data( "item.autocomplete", item )
             .append(inner_html)

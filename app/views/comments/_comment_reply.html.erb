@@ -20,6 +20,7 @@
     <%= form_for [@book, comment_children],
           :html => { :id => "form_edit_comment#{comment_children.id}"},
             remote: true do |f| %>
+      <%= f.invisible_captcha :captcha %>
       <%= f.text_field :body, class: "form-control",id: "form_edit_comment_input#{comment_children.id}"  %>
     <% end %>
     <p class="comment-options" id="static-comment<%= comment_children.id %>"><%= comment_children.body %></p>

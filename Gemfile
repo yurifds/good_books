@@ -20,6 +20,8 @@ gem 'acts_as_votable', '~> 0.10.0'
 gem 'isbn_validation'
 gem 'ransack', github: 'activerecord-hackery/ransack'
 gem 'jquery-turbolinks'
+gem 'invisible_captcha'
+gem 'httparty'
 
 group :test do
   gem 'shoulda'

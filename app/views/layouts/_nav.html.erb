@@ -5,7 +5,7 @@
           class: "navbar-form navbar-left" do |f|%>
           <div class="input-group" style="width:500px;">
             <%= f.text_field :title_or_author_or_ISBN_cont,
-                  placeholder: "Pesquise por Título, Autor ou ISBN.",
+                  placeholder: "Busque por título, autor, ISBN...",
                     class: "form-control" %>
             <div class="input-group-btn">
               <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
@@ -24,7 +24,6 @@
           <ul class="dropdown-menu">
             <% if can?(:manage, :all)%>
               <li><%= link_to 'Adicionar novo livro', new_book_path %></li>
-              <li><%= link_to 'Gerenciar categorias', categories_path %></li>
             <% end  %>
             <li><%= link_to 'Logout', destroy_user_session_path, method: 'delete' %></li>
           </ul>

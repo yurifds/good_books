@@ -1,6 +1,8 @@
 class BooksController < ApplicationController
   #load_and_authorize_resource :only => [:index, :edit, :update, :create, :destroy]
-  load_and_authorize_resource
+  skip_authorization_check :only => [:index]
+  #load_and_authorize_resource
+  before_action :authenticate_user!, :except => [:index, :show, :autocomplete_title]
 
   def index
     @search = Book.search(params[:q])
@@ -66,11 +68,10 @@ class BooksController < ApplicationController
     redirect_to root_path
   end
 
-
   private
 
   def book_params
     params.require(:book)
-      .permit(:title, :author, :category_id, :description, :image_book, :language, :ISBN)
+      .permit(:title, :author, :description, :image_book, :language, :ISBN, :captcha, :flgAsin)
   end
 end

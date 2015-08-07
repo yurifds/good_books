@@ -3,6 +3,8 @@
 <%= render 'form_errors', record:@book %>
 
 <%= form_for @book ,:html => { :multipart => true },class: "form-horizontal" do |f| %>
+  <%= f.invisible_captcha :captcha %>
+
   <div class="form-group">
     <%= f.label :title %>
     <%= f.text_field :title, class: "form-control" %>
@@ -13,20 +15,20 @@
     <%= f.label :author %>
     <%= f.text_field :author, class: "form-control" %>
   </div>
-  <div class="form-group">
-    <%= f.label :ISBN %>
-    <%= f.text_field :ISBN, class: "form-control"%>
+  <div class="form-group" id="isbn_field">
+    <%= f.label :ISBN, id:'isbn_label' %>
+    <%= f.text_field :ISBN, class: "form-control" %>
+    <div class="checkbox">
+      <label>
+        <%= f.check_box :flgAsin,{ id:'check_asin' }, "true", "false" %>
+        <span class="label label-info">Marque para ASIN da Amazon</span>
+      </label>
+    </div>
   </div>
   <div class="form-group">
     <%= f.label :language %>
     <%= f.select :language, Book::LANGUAGES,
               { include_blank: true }, { :class => 'form-control' } %>
-  </div>
-  <div class="form-group">
-    <%= f.label :category %>
-    <%= f.select :category_id,
-        Category.all.collect {|category| [ category.name, category.id ] },
-              {include_blank: true}, { :class => 'form-control' } %>
   </div>
   <div class="form-group">
     <%= f.label :image_book %>

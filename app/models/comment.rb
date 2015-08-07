@@ -4,16 +4,15 @@ class Comment < ActiveRecord::Base
   validates :body, :presence => true
   validates :user, :presence => true
 
+  attr_accessor :captcha # virtual attribute, the honeypot
+  validates :captcha, invisible_captcha: true
+
   acts_as_votable
 
   belongs_to :commentable, :polymorphic => true
-
-  # NOTE: Comments belong to a user
   belongs_to :user
 
-  # Helper class method that allows you to build a comment
-  # by passing a commentable object, a user_id, and comment text
-  # example in readme
+
   def self.build_from(obj, user_id, comment)
     new \
       :commentable => obj,
