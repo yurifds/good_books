@@ -2,7 +2,7 @@
 <hr>
 <%= render 'form_errors', record:@book %>
 <div class="alert alert-info" role="alert">
-  Antes de adicionar um novo livro, busque o no topo do site, pois já pode ter sido cadastrado.
+  Antes de adicionar um novo livro, verifique se o mesmo já foi adicionado buscando no topo do site.
 </div>
 
 <%= form_for @book ,:html => { :multipart => true },class: "form-horizontal" do |f| %>

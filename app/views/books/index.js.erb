@@ -1,0 +1,2 @@
+$("#index_books").append("<%= escape_javascript(render @books) %>");
+<%= render 'shared/paginate', resources: @books %>
