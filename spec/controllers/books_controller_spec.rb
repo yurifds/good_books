@@ -12,8 +12,30 @@ RSpec.describe BooksController do
     end
   end
 
+  describe "GET #autocomplete_title" do
+    let(:book) { FactoryGirl.create(:book) }
+
+    context 'autocomplete' do
+      it 'status code' do
+        xhr :get, :autocomplete_title, title: 'Conhecendo Ruby', format: :json
+        expect(response.code).to eq("200")
+      end
+
+      it 'when there is record' do
+        xhr :get, :autocomplete_title, title: 'Conhecendo Ruby', format: :json
+        result = JSON.parse(response.body)
+        expect(result[0]["title"]).to eq(book.title)
+      end
+
+      it 'when there is no record' do
+        xhr :get, :autocomplete_title, title: 'nothing', format: :json
+        result = JSON.parse(response.body)
+        expect(result).to be_empty
+      end
+    end
+  end
+
   describe "POST #create" do
-    let(:category) { FactoryGirl.create(:category) }
     let(:uploadFile) do
       Rack::Test::UploadedFile.new("#{Rails.root}/spec/support/fixtures/test.jpg","image/jpg")
     end
@@ -23,13 +45,13 @@ RSpec.describe BooksController do
         book: {
           title: 'Conhecendo Ruby',
           author: 'Eustáquio',
-          category_id: category.id,
+          ISBN: '978-85-5519-012-4',
+          language: 'Inglês',
           image_book: uploadFile,
           description: 'Livro ruby iniciante'
         }
       }
     end
-
 
     context 'with valid params' do
       it 'save a book' do
@@ -57,7 +79,6 @@ RSpec.describe BooksController do
       get :edit, id: edit_book.id
       expect(assigns(:book)).to eq(edit_book)
     end
-
   end
 
   describe "PUT #update " do

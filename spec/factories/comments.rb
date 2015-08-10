@@ -1,7 +1,6 @@
 FactoryGirl.define do
   factory :comment do
     body "MyText"
-book nil
+    book nil
   end
-
 end
