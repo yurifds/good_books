@@ -16,7 +16,6 @@ class CommentsController < ApplicationController
     @new_reply = Comment.build_from(@book, current_user.id, comment_params[:body])
     @new_reply.parent_id = @root_comment.id
     @new_reply.save
-
     respond_to do |format|
       format.js
     end
