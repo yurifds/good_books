@@ -13,10 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.turbolinks
-//= require jquery-ui
-//= require jquery.raty
-//= require autogrow
+//= require site/jquery-ui
+//= require site/jquery.raty
+//= require site/autogrow
 //= require bootstrap
 //= require turbolinks
-//= require bindWithDelay
+//= require site/bindWithDelay
 //= require_tree
