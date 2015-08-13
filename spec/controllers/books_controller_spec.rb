@@ -13,16 +13,17 @@ RSpec.describe BooksController do
   end
 
   describe "GET #autocomplete_title" do
-    let(:book) { FactoryGirl.create(:book) }
+    let(:user) { FactoryGirl.create(:user) }
+    let(:book) { FactoryGirl.create(:book, user: user) }
 
     context 'autocomplete' do
       it 'status code' do
-        xhr :get, :autocomplete_title, title: 'Conhecendo Ruby', format: :json
+        xhr :get, :autocomplete_title, title: book.title, format: :json
         expect(response.code).to eq("200")
       end
 
       it 'when there is record' do
-        xhr :get, :autocomplete_title, title: 'Conhecendo Ruby', format: :json
+        xhr :get, :autocomplete_title, title: book.title, format: :json
         result = JSON.parse(response.body)
         expect(result[0]["title"]).to eq(book.title)
       end
@@ -45,7 +46,7 @@ RSpec.describe BooksController do
         book: {
           title: 'Conhecendo Ruby',
           author: 'Eustáquio',
-          ISBN: '978-85-5519-012-4',
+          ISBN: '978-85-5519-016-2',
           language: 'Inglês',
           image_book: uploadFile,
           description: 'Livro ruby iniciante'
@@ -73,7 +74,8 @@ RSpec.describe BooksController do
   end
 
   describe "GET #edit" do
-    let(:edit_book) { FactoryGirl.create(:book) }
+    let(:user) { FactoryGirl.create(:user) }
+    let(:edit_book) { FactoryGirl.create(:book, user: user) }
 
     it 'assigns edit_book to @book' do
       get :edit, id: edit_book.id
@@ -82,8 +84,8 @@ RSpec.describe BooksController do
   end
 
   describe "PUT #update " do
-
-    let(:edit_book) { FactoryGirl.create(:book) }
+    let(:user) { FactoryGirl.create(:user) }
+    let(:edit_book) { FactoryGirl.create(:book, user: user) }
 
     let(:book_params) do
       { author: 'Viny baggio' }
@@ -121,7 +123,8 @@ RSpec.describe BooksController do
   end
 
   describe "DELETE #destroy" do
-    let(:remove_book) { FactoryGirl.create(:book) }
+    let(:user) { FactoryGirl.create(:user) }
+    let(:remove_book) { FactoryGirl.create(:book, user: user) }
 
     it "remove book" do
       delete :destroy, id: remove_book.id

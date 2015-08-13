@@ -22,9 +22,9 @@ RSpec.configure do |config|
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
 
-  RSpec.configure do |config|
-    config.include Paperclip::Shoulda::Matchers
-  end
+
+  config.include Paperclip::Shoulda::Matchers
+
 
   config.after(:suite) do
     FileUtils.rm_rf(Dir["#{Rails.root}/spec/test_files/"])

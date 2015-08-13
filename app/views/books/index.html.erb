@@ -5,7 +5,11 @@
 <!-- Title -->
 <div class="row">
   <div class="col-lg-12">
-      <h3>Livros</h3>
+    <div class="alert alert-info" role="alert">
+      Caso não tenha encontrado algum livro em específico,
+      clique <%= link_to 'aqui', new_book_path, class: 'new_book' %>
+      para cadastrá-lo no catálogo.
+    </div>
   </div>
 </div>
 

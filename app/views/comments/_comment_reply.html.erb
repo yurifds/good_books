@@ -1,4 +1,4 @@
-<div class="form-group">
+<div id="row<%= comment_children.id %>">
   <b><%= comment_children.user.name_and_last_name %></b>
   <div id="rating_user_in_comment<%= comment_children.id %>" class="comment-username"></div>
 
@@ -13,20 +13,19 @@
         <span class="glyphicon glyphicon-trash"></span>
       <% end %>
     <% end %>
-    <%= time_ago_in_words(comment_children.created_at) %> Ago
+    <%= time_ago_in_words(comment_children.created_at) %> atrás
   </span>
 
   <div style="display:block">
     <%= form_for [@book, comment_children],
           :html => { :id => "form_edit_comment#{comment_children.id}"},
             remote: true do |f| %>
-      <%= f.invisible_captcha :captcha %>
       <%= f.text_field :body, class: "form-control",id: "form_edit_comment_input#{comment_children.id}"  %>
     <% end %>
     <p class="comment-options" id="static-comment<%= comment_children.id %>"><%= comment_children.body %></p>
     <% if user_signed_in? %>
         <div class="comment-options">
-          <%= link_to 'Gostei', comment_like_path(comment_children), id: "like-link#{comment_children.id}", :method=> :post, remote: true %>
+          <%= link_to t('actions.like'), comment_like_path(comment_children), id: "like-link#{comment_children.id}", :method=> :post, remote: true %>
         </div>
         <div class="comment-options">
           <span class="glyphicon glyphicon-thumbs-up"></span>

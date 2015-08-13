@@ -1,0 +1,10 @@
+pt-BR:
+  labels:
+    book:
+      title: Cadastrar Livro
+      image_book: Imagem do livro
+      by: Por
+      language: Idioma
+    comment:
+      replys: Respostas
+      reply: Resposta  

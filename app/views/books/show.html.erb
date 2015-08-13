@@ -10,9 +10,8 @@
     </h1>
   </div>
 </div>
-<!-- /.row -->
 
-<!-- Portfolio Item Row -->
+<!-- /.row -->
 <div class="row">
   <div class="col-md-4">
     <%= image_tag @book.image_book.url(:medium) %>
@@ -27,19 +26,21 @@
 
   <div class="col-md-8">
     <h3><%= @book.title %></h3>
-    <h5>Por: <i><%= @book.author %></i></h5>
-    <h5>Idioma: <%= @book.language %></h5>
+    <h5><%= t('labels.book.by') %>: <i><%= @book.author %></i></h5>
+    <h5><%= t('labels.book.language') %>: <%= @book.language %></h5>
     <div style="display:inline-block">
       <span class="label label-success" id="note"></span>
       <div id="average_rating"></div>
-      <%= link_to @book.amount_of_ratings %>
+      <%= link_to amount_of_ratings(@book) %>
     </div>
     <h5><%= @book.description %></h5>
     <div class="form-group">
-      <% if can?(:manage, :all) %>
+      <% if can_edit_book?(@book) %>
         <%= link_to edit_book_path(@book), class: 'btn btn-primary' do %>
           <span class="glyphicon glyphicon-book"></span>
         <% end %>
+      <% end %>
+      <% if can?(:manage, :all) %>
         <%= link_to @book, class: 'btn btn-primary', method: :delete, data: { confirm: "Tem certeza que deseja remover esse livro ?" } do %>
           <span class="glyphicon glyphicon-trash"></span>
         <% end %>
@@ -55,10 +56,9 @@
       <%= form_for [@book, @comment], remote: true do |f| %>
         <%= f.invisible_captcha :captcha %>
         <div class="form-group">
-          <%= f.label :body %>
-          <%= f.text_area :body, class: 'form-control', rows: '3'%>
+          <%= f.text_area :body, class: 'form-control', rows: '3', placeholder:'Deixe um comentário...'%>
         </div>
-        <%= f.submit 'Deixe um comentário' , class: 'btn btn-primary'%>
+        <%= f.submit t('actions.post') , class: 'btn btn-primary'%>
       <% end %>
     </div>
   <% else %>

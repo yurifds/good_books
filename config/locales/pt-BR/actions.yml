@@ -1,0 +1,15 @@
+pt-BR:
+  actions:
+    edit: Editar
+    remove: Remover
+    signup: Cadastrar
+    login: Logar
+    forgot_password: Esqueceu a senha?
+    confirmation_email: Não recebeu o E-mail de confirmação?
+    password_reset: Enviar instruções para resetar senha
+    choose_file: Escolha um arquivo
+    add_book: Cadastrar livro
+    edit_book: Editar Livro
+    post: Postar
+    reply: Responder
+    like: Gostei

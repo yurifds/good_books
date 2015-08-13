@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Book do
   context 'Relations' do
     it { expect(subject).to have_many(:ratings) }
+    it { expect(subject).to belong_to(:user) }
   end
 
   context 'Model validations' do

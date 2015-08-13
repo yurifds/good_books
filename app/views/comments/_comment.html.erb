@@ -13,7 +13,7 @@
                     remote: true do %>
               <span class="glyphicon glyphicon-trash"></span>
             <% end %>
-            <%= time_ago_in_words(comment.created_at) %> Ago
+            <%= time_ago_in_words(comment.created_at) %> atrás
           </span>
       <% end %>
     </div>
@@ -21,8 +21,7 @@
     <%= form_for [@book, comment],
           :html => { :id => "form_edit_comment#{comment.id}"},
             remote: true do |f| %>
-      <%= f.invisible_captcha :captcha %>
-      <%= f.text_field :body, class: "form-control", id: "form_edit_comment_input#{comment.id}"  %>
+      <%= f.text_field :body, class: "form-control", id: "form_edit_comment_input#{comment.id}"%>
     <% end %>
 
     <p id="static-comment<%= comment.id %>"><%= comment.body %></p>
@@ -30,16 +29,16 @@
     <div>
       <% if user_signed_in? %>
           <div class="comment-options">
-            <%= link_to 'Gostei', comment_like_path(comment),id: "like-link#{comment.id}", :method=> :post, remote: true%>
+            <%= link_to t('actions.like'), comment_like_path(comment),id: "like-link#{comment.id}", :method=> :post, remote: true %>
           </div>
           <div class="comment-options">
-            <a href="#" id="reply<%= comment.id %>">Responder</a>
+            <a href="#" id="reply<%= comment.id %>"><%= t('actions.reply') %></a>
           </div>
       <% end %>
 
       <div id="amount_replys<%= comment.id %>" class="comment-options">
         <% if comment.has_children? %>
-          <a href="#" id="allreplys<%= comment.id %>"><%=comment.children.size %> Respostas</a>
+          <a href="#" id="allreplys<%= comment.id %>"> <%= amount_of_replys(comment) %></a>
         <% end %>
       </div>
       <div class="comment-options">
@@ -54,10 +53,9 @@
               remote: true do |f| %>
           <%= f.invisible_captcha :captcha %>
           <div class="form-group">
-            <%= f.label :body %>
-            <%= f.text_area :body, class: 'form-control',rows: '1', :id => "reply_to_comment#{comment.id}"%>
+            <%= f.text_area :body, class: 'form-control',rows: '1', :id => "reply_to_comment#{comment.id}", placeholder:'Responder...'%>
           </div>
-          <%= f.submit 'Responder' , class: 'btn btn-primary'%>
+          <%= f.submit t('actions.reply') , class: 'btn btn-primary'%>
         <% end %>
       </div>
     <% end %>

@@ -5,7 +5,8 @@ RSpec.describe CommentsController do
   login_user_admin
 
   describe "POST #create" do
-    let(:book) { FactoryGirl.create(:book) }
+    let(:user) { FactoryGirl.create(:user) }
+    let(:book) { FactoryGirl.create(:book, user: user) }
     context 'with valid params' do
       let(:comment_params) do
         {
@@ -38,7 +39,8 @@ RSpec.describe CommentsController do
   end
 
   describe "POST #create_reply" do
-    let(:book) { FactoryGirl.create(:book) }
+    let(:user) { FactoryGirl.create(:user) }
+    let(:book) { FactoryGirl.create(:book, user: user) }
     let(:root_comment) { FactoryGirl.create(:comment, commentable_id: book.id) }
 
     context 'with valid params' do
@@ -76,7 +78,8 @@ RSpec.describe CommentsController do
   end
 
   describe 'PUT #update' do
-    let(:book) { FactoryGirl.create(:book) }
+    let(:user) { FactoryGirl.create(:user) }
+    let(:book) { FactoryGirl.create(:book, user: user) }
     let(:edit_comment) { FactoryGirl.create(:comment, commentable_id: book.id) }
 
     let(:comment_params) do
@@ -100,7 +103,8 @@ RSpec.describe CommentsController do
   end
 
   describe 'DELETE #destroy' do
-    let(:book) { FactoryGirl.create(:book) }
+    let(:user) { FactoryGirl.create(:user) }
+    let(:book) { FactoryGirl.create(:book, user: user) }
     let(:destroy_comment) { FactoryGirl.create(:comment, commentable_id: book.id) }
 
     let(:url_params) do
@@ -117,7 +121,8 @@ RSpec.describe CommentsController do
   end
 
   describe 'POST #like' do
-    let(:book) { FactoryGirl.create(:book) }
+    let(:user) { FactoryGirl.create(:user) }
+    let(:book) { FactoryGirl.create(:book, user: user) }
     let(:comment) { FactoryGirl.create(:comment, commentable_id: book.id) }
 
     before do
@@ -136,7 +141,7 @@ RSpec.describe CommentsController do
     end
 
     it 'unlike comment' do
-      xhr :post, :like, url_params
+      xhr :post, :like, url_params #like
       xhr :post, :like, url_params #unlike
       expect(subject.current_user.voted_up_on? comment).to eql(false)
     end

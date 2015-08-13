@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150806215339) do
+ActiveRecord::Schema.define(version: 20150812212819) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,9 +29,11 @@ ActiveRecord::Schema.define(version: 20150806215339) do
     t.string   "ISBN",                    null: false
     t.string   "language",                null: false
     t.boolean  "flgAsin"
+    t.integer  "user_id"
   end
 
   add_index "books", ["ISBN"], name: "index_books_on_ISBN", unique: true, using: :btree
+  add_index "books", ["user_id"], name: "index_books_on_user_id", using: :btree
 
   create_table "comments", force: :cascade do |t|
     t.integer  "commentable_id"
@@ -97,6 +99,7 @@ ActiveRecord::Schema.define(version: 20150806215339) do
   add_index "votes", ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope", using: :btree
   add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope", using: :btree
 
+  add_foreign_key "books", "users"
   add_foreign_key "ratings", "books"
   add_foreign_key "ratings", "users"
 end

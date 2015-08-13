@@ -2,7 +2,8 @@ class Book < ActiveRecord::Base
   include ActiveModel::Validations
 
   acts_as_commentable
-  has_many :ratings
+  has_many :ratings, :dependent => :destroy
+  belongs_to :user
   validates_presence_of :title, :author, :description, :ISBN, :language
   has_attached_file :image_book, :styles => { :medium => "280x395#", :thumb => "143x202#", :small => "52x72#" }, :default_url => "/images/:style/missing.png"
   validates_attachment_content_type :image_book, :content_type => /\Aimage\/.*\Z/
@@ -26,10 +27,6 @@ class Book < ActiveRecord::Base
 
   def average_rating
     ratings.average(:points).to_f
-  end
-
-  def amount_of_ratings
-    "#{ratings.count} Avaliações"
   end
 
   class AsinValidator < ActiveModel::EachValidator

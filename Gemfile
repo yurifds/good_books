@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+ruby '2.2.2'
 gem 'rails', '4.2.2'
 
 gem 'pg'
@@ -23,6 +24,7 @@ gem 'jquery-turbolinks'
 gem 'invisible_captcha'
 gem 'httparty'
 gem 'will_paginate', '~> 3.0.6'
+gem 'puma'
 
 group :test do
   gem 'shoulda'
@@ -34,4 +36,5 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'spring'
   gem "factory_girl_rails", "~> 4.0"
+  gem 'mailcatcher'
 end

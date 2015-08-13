@@ -1,5 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context 'Relations' do
+    it { expect(subject).to belong_to(:user) }
+    it { expect(subject).to belong_to(:commentable) }
+  end
+
+  context 'Model validations' do
+    context 'Presence of' do
+      it { expect(subject).to validate_presence_of(:body) }
+      it { expect(subject).to validate_presence_of(:user) }
+    end
+  end
+
 end

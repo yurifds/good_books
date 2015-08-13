@@ -1,0 +1,120 @@
+@import "bootstrap";
+body { padding-top: 60px; }
+
+.navbar-inverse {
+  background-color: #3f3f3f;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+  color: #D7D7D7;
+}
+
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: rgba(#4a544b, 0.96);
+  color: #F3EEEE;
+}
+
+.thumbnail:hover {
+  border-color: rgba(#0d0d0c, 0.98)
+}
+
+.thumbnail .caption p{
+  position: relative;
+  height: 33px;
+}
+
+.thumbnail {
+  position: relative;
+  height: 329px;
+}
+
+.thumbnail .caption{
+  position: relative;
+}
+
+.thumbnail-item-detail {
+  position: relative;
+  height: 650px;
+}
+
+hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 0;
+  border-top: 1px solid #E3E3E3
+}
+
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.form-control {
+  width: 290px;
+}
+
+
+#average_rating {
+  display: inline;
+}
+
+.field_with_errors .form-control {
+  border-color: #a94442;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.table {
+  width: 70%;
+}
+
+.comment-username {
+  display: inline;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.navbar-form {
+  margin-left: 19px;
+}
+
+.reply-comment {
+  display: none;
+  margin-left: 26px;
+  margin-top: 11px;
+  border-left: 1px solid #ccc;
+  padding: 6px 12px;
+}
+
+.comment-options {
+  display: inline;
+  margin: 3px;
+}
+
+.list_item_container {
+  width:250px;
+  height: 80px;
+  padding: 5px 0;
+}
+
+.image {
+  width: 72px;
+  height: 52px;
+  margin-right: 10px;
+  float: left;
+}
+
+.author {
+  font-style: italic;
+  font-size: 0.8em;
+  color: gray;
+}
+
+.new_book {
+  color: #101010;
+  font-style: italic;
+}

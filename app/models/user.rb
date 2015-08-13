@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :ratings
+  has_many :ratings, :dependent => :destroy
+  has_many :books, :dependent => :destroy
 
   acts_as_voter
 

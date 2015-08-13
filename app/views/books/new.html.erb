@@ -1,4 +1,4 @@
-<h3>Adicionar livro</h3>
+<h3><%= t('labels.book.title') %></h3>
 <hr>
 <%= render 'form_errors', record:@book %>
 <div class="alert alert-info" role="alert">
@@ -32,13 +32,13 @@
               { include_blank: true }, { :class => 'form-control' } %>
   </div>
   <div class="form-group">
-    <%= f.label :image_book %>
+    <%= f.label :image_book, t('labels.book.image_book') %>
     <%= f.file_field :image_book %>
-     <p class="help-block">Selecione uma imagem.</p>
+     <p class="help-block">Selecione uma imagem em boa definição para o livro.</p>
   </div>
   <div class="form-group">
     <%= f.label :description %>
     <%= f.text_area :description, rows:"3", class:"form-control"%>
   </div>
-  <%= f.submit 'Add book',class: "btn btn-primary"%>
+  <%= f.submit t('actions.add_book'),class: "btn btn-primary"%>
 <% end %>

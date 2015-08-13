@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   #load_and_authorize_resource :only => [:index, :edit, :update, :create, :destroy]
-  skip_authorization_check :only => [:index]
+  skip_authorization_check :only => [:index, :autocomplete_title]
   #load_and_authorize_resource
   before_action :authenticate_user!, :except => [:index, :show, :autocomplete_title]
 
@@ -43,6 +43,9 @@ class BooksController < ApplicationController
 
   def edit
     @book = Book.find(params[:id])
+    unless @book.user.id == current_user.id || can?(:manage, :all)
+      raise CanCan::AccessDenied.new("Insufficient Authorization")
+    end
   end
 
   def update
@@ -56,6 +59,7 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
+    @book.user = current_user
     if @book.save
       redirect_to root_path, notice: 'Book registered successfully'
     else
