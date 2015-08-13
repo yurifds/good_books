@@ -4,7 +4,7 @@ $(document).ready(function(){
   $('#my_rating_book').raty({
     score: '<%= @points_current_user %>',
     cancel: true,
-    path: '/assets',
+    path: '<%= root_url %>/assets',
     click: function(score, evt) {
       $.ajax({
         url:'/books/<%= @book.id %>/ratings',
@@ -17,7 +17,7 @@ $(document).ready(function(){
   $('#average_rating').raty({
     readOnly: true,
     score: '<%= @book.average_rating %>',
-    path: '/assets'
+    path: '<%= root_url %>/assets'
   });
 
   $('#note').text(<%= @book.average_rating %>)
@@ -27,7 +27,7 @@ $(document).ready(function(){
         score : '<%= comment.user.rating_by_user(@book) %>',
         readOnly : true,
         halfShow : true,
-        path: '/assets'
+        path: '<%= root_url %>/assets'
       });
       $("#reply<%= comment.id %>").click(function(e){
         e.preventDefault();
