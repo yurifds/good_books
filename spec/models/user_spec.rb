@@ -4,6 +4,7 @@ RSpec.describe User do
 
   context "Relations" do
     it { expect(subject).to have_many(:ratings) }
+    it { expect(subject).to have_many(:books) }
   end
 
   context "Model validations" do
