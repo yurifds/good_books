@@ -16,6 +16,7 @@ gem 'devise'
 gem 'cancancan', '~> 1.10'
 gem 'bootstrap-sass'
 gem "paperclip", "~> 4.3"
+gem 'aws-sdk'
 gem 'acts_as_commentable_with_threading'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'isbn_validation'
@@ -36,7 +37,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'spring'
   gem "factory_girl_rails", "~> 4.0"
-  gem 'mailcatcher'
 end
 
 group :production do

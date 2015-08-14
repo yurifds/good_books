@@ -28,7 +28,11 @@
     score : '<%= @comment.user.rating_by_user(@book) %>',
     readOnly : true,
     halfShow : true,
-    path: '/assets'
+    starOff  : "<%= asset_path('star-off.png') %>",
+    starHalf : "<%= asset_path('star-half.png') %>",
+    starOn   : "<%= asset_path('star-on.png') %>",
+    cancelOff : "<%= asset_path('cancel-off.png') %>",
+    cancelOn  : "<%= asset_path('cancel-on.png') %>"
   });
   $("#comment_body").val('')
 <% end %>
