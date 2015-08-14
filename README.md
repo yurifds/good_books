@@ -1,7 +1,7 @@
 # Good_Books [![Code Climate](https://codeclimate.com/github/yuriferreira/good_books/badges/gpa.svg)](https://codeclimate.com/github/yuriferreira/good_books) [![Test Coverage](https://codeclimate.com/github/yuriferreira/good_books/badges/coverage.svg)](https://codeclimate.com/github/yuriferreira/good_books/coverage)
 
 
-*Good_Books* O principal objetivo é fazer a avaliação de livros com suporte a thread de comentários likes etc. Demo http://goodbooks4devs.herokuapp.com/
+*Good_Books* O principal objetivo da app é fazer a avaliação de livros com suporte a thread de comentários likes etc. Demo http://goodbooks4devs.herokuapp.com/
 
 ## Instalação
 
