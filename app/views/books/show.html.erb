@@ -33,7 +33,7 @@
       <div id="average_rating"></div>
       <%= link_to amount_of_ratings(@book) %>
     </div>
-    <h5><%= @book.description %></h5>
+    <p><%= @book.description %></p>
     <div class="form-group">
       <% if can_edit_book?(@book) %>
         <%= link_to edit_book_path(@book), class: 'btn btn-primary' do %>
