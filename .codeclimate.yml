@@ -3,3 +3,4 @@ languages:
   JavaScript: true
 exclude_paths:
 - "app/assets/javascripts/jquery.raty.js"
+- "app/assets/javascripts/autogrow.js"
