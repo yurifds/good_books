@@ -1,0 +1,5 @@
+pt-BR:
+  messages:
+    book:
+      update: Livro alterado com sucesso
+      create: Livro cadastrado com sucesso

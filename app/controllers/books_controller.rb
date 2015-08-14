@@ -51,7 +51,7 @@ class BooksController < ApplicationController
   def update
     @book = Book.find(params[:id])
     if @book.update(book_params)
-      redirect_to root_path, notice: 'Book edited successfully'
+      redirect_to root_path, notice: t('messages.book.update')
     else
       render :edit
     end
@@ -61,7 +61,7 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     @book.user = current_user
     if @book.save
-      redirect_to root_path, notice: 'Book registered successfully'
+      redirect_to root_path, notice: t('messages.book.create')
     else
       render 'books/new'
     end

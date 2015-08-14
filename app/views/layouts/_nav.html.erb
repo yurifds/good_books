@@ -1,6 +1,8 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">GoodBooks4Devs</a>
+    <a class="navbar-brand" href="#">
+      <%= image_tag 'brand.png', size: "40x40"%>
+    </a>
     <%= search_form_for @search, url: search_books_path, method: :post,
           class: "navbar-form navbar-left" do |f|%>
           <div class="input-group" style="width:500px;">
