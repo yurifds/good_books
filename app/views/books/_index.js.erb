@@ -4,7 +4,7 @@ $(document).ready(function(){
         score : '<%= book.average_rating %>',
         readOnly : true,
         halfShow : true,
-        path:  "<%= asset_path 'star-off.png' %>"
+        starOff  : "<%= asset_path('star-off.png') %>"
       });
   <% end %>
 });
