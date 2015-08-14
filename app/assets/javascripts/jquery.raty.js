@@ -1,15 +1,4 @@
-/*!
- * jQuery Raty - A Star Rating Plugin
- *
- * The MIT License
- *
- * @author  : Washington Botelho
- * @doc     : http://wbotelhos.com/raty
- * @version : 2.7.0
- *
- */
 
-;
 (function($) {
   'use strict';
 
@@ -460,13 +449,6 @@
     _nameForIndex: function(i) {
       return this.opt.score && this.opt.score >= i ? 'starOn' : 'starOff';
     },
-
-    _resetTitle: function(star) {
-      for (var i = 0; i < this.opt.number; i++) {
-        this.stars[i].title = methods._getHint.call(this, i + 1);
-      }
-    },
-
      _roundHalfScore: function(score) {
       var integer = parseInt(score, 10),
           decimal = methods._getFirstDecimal.call(this, score);

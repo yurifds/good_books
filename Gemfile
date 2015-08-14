@@ -29,6 +29,7 @@ gem 'puma'
 
 group :test do
   gem 'shoulda'
+  gem "codeclimate-test-reporter"
 end
 
 group :development, :test do
