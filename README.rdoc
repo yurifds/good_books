@@ -1,28 +1,28 @@
-== README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Good_Books [![Code Climate](https://codeclimate.com/github/yuriferreira/good_books/badges/gpa.svg)](https://codeclimate.com/github/yuriferreira/good_books) [![Test Coverage](https://codeclimate.com/github/yuriferreira/good_books/badges/coverage.svg)](https://codeclimate.com/github/yuriferreira/good_books/coverage)
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+*Good_Books* O principal objetivo é fazer a avaliação de livros com suporte a thread de comentários likes etc. Demo http://goodbooks4devs.herokuapp.com/
+
+## Instalação
+
+Baixe o repositório
+
+    git clone git@github.com:yuriferreira/good_books.git
+
+Instale as dependências
+
+    bundle install
+
+Configure o banco de dados
+
+    rake db:create
+    rake db:migrate
+    rake db:seed ( Aqui é criado um usuário [ usertest@gmail.com/12345678 ])
+
+Rode os testes :+1:
+
+    rspec
+
+Rode a aplicação :grin:
+
+    rails s
