@@ -26,3 +26,7 @@ Rode os testes :+1:
 Rode a aplicação :grin:
 
     rails s
+
+## Contribuindo
+
+Novas ideias e contribuintes são bem vindos!  
