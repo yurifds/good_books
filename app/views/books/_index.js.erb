@@ -4,7 +4,11 @@ $(document).ready(function(){
         score : '<%= book.average_rating %>',
         readOnly : true,
         halfShow : true,
-        starOff  : "<%= asset_path('star-off.png') %>"
+        starOff  : "<%= asset_path('star-off.png') %>",
+        starHalf : "<%= asset_path('star-half.png') %>",
+        starOn   : "<%= asset_path('star-on.png') %>",
+        cancelOff : "<%= asset_path('cancel-off.png') %>",
+        cancelOn  : "<%= asset_path('cancel-on.png') %>"
       });
   <% end %>
 });

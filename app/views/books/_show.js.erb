@@ -4,7 +4,11 @@ $(document).ready(function(){
   $('#my_rating_book').raty({
     score: '<%= @points_current_user %>',
     cancel: true,
-    path: '<%= root_url %>assets',
+    starOff  : "<%= asset_path('star-off.png') %>",
+    starHalf : "<%= asset_path('star-half.png') %>",
+    starOn   : "<%= asset_path('star-on.png') %>",
+    cancelOff : "<%= asset_path('cancel-off.png') %>",
+    cancelOn  : "<%= asset_path('cancel-on.png') %>",
     click: function(score, evt) {
       $.ajax({
         url:'/books/<%= @book.id %>/ratings',
@@ -17,7 +21,11 @@ $(document).ready(function(){
   $('#average_rating').raty({
     readOnly: true,
     score: '<%= @book.average_rating %>',
-    path: '<%= root_url %>assets'
+    starOff  : "<%= asset_path('star-off.png') %>",
+    starHalf : "<%= asset_path('star-half.png') %>",
+    starOn   : "<%= asset_path('star-on.png') %>",
+    cancelOff : "<%= asset_path('cancel-off.png') %>",
+    cancelOn  : "<%= asset_path('cancel-on.png') %>"
   });
 
   $('#note').text(<%= @book.average_rating %>)
@@ -27,7 +35,11 @@ $(document).ready(function(){
         score : '<%= comment.user.rating_by_user(@book) %>',
         readOnly : true,
         halfShow : true,
-        path: '<%= root_url %>assets'
+        starOff  : "<%= asset_path('star-off.png') %>",
+        starHalf : "<%= asset_path('star-half.png') %>",
+        starOn   : "<%= asset_path('star-on.png') %>",
+        cancelOff : "<%= asset_path('cancel-off.png') %>",
+        cancelOn  : "<%= asset_path('cancel-on.png') %>"
       });
       $("#reply<%= comment.id %>").click(function(e){
         e.preventDefault();
