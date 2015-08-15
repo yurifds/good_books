@@ -16,6 +16,7 @@ class BooksController < ApplicationController
 
   def autocomplete_title
     @search = Book.search(title_cont: params[:title])
+    @search.sorts = 'title asc'
     @books = @search.result
     respond_to do |format|
       format.json { render :json => @books.to_json(:methods => [:book_url, :title_truncate]) }

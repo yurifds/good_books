@@ -5,6 +5,7 @@ pt-BR:
       image_book: Imagem do livro
       by: Por
       language: Idioma
+      isbn: ISBN
     comment:
       replys: Respostas
-      reply: Resposta  
+      reply: Resposta
