@@ -4,6 +4,25 @@ RSpec.describe BooksController do
 
   login_user_admin
 
+  describe 'GET #index' do
+    before do
+      FactoryGirl.create(:book, user: subject.current_user)
+    end
+
+    it "@books shouldn't be empty" do
+      get :index
+      expect(assigns(:books)).not_to be_empty
+    end
+  end
+
+  describe 'GET #show' do
+    let(:book) { FactoryGirl.create(:book, user: subject.current_user) }
+    it 'assigns a new Comment to @comment' do
+      get :show, id: book.id
+      expect(assigns(:comment)).to be_a_new(Comment)
+    end
+  end
+
   describe "GET #new" do
     before { get :new }
 
