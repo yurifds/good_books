@@ -23,6 +23,10 @@ Rode os testes :+1:
 
     rspec
 
+Execute o  [mailcatcher](http://mailcatcher.me/) para teste de e-mail no ambiente de desenvolvimento
+
+    mailcatcher
+
 Rode a aplicação :grin:
 
     rails s

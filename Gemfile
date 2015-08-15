@@ -38,6 +38,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'spring'
   gem "factory_girl_rails", "~> 4.0"
+  gem 'mailcatcher'
 end
 
 group :production do
