@@ -79,7 +79,7 @@ Rails.application.configure do
 
 
 
-  config.action_mailer.default_url_options = { :host => 'http://young-savannah-7106.herokuapp.com/' }
+  config.action_mailer.default_url_options = { :host => 'http://goodbooks4devs.herokuapp.com/' }
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.perform_deliveries = true
 
@@ -89,7 +89,7 @@ Rails.application.configure do
     :authentication => :plain,
     :user_name      => ENV['username_sendgrid'],
     :password       => ENV['password_sendgrid'],
-    :domain         => 'sendgrid.me',
+    :domain         => 'heroku.com',
     :enable_starttls_auto => true
   }
 
@@ -101,5 +101,5 @@ Rails.application.configure do
       :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
       :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
     }
-  } 
+  }
 end
