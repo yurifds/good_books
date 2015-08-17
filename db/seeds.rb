@@ -14,7 +14,7 @@
 user = User.create(name: "usertest",last_name: "usertest",
   email:"usertest@gmail.com",password: "12345678",
   password_confirmation: "12345678", admin: true)
-
+ 
 #50.times do |index|
 #  Book.create! title: "PRACTICAL OBJECT-ORIENTED DESIGN IN RUBY#{index}",
 #              author: "SANDI METZ#{index}",
