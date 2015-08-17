@@ -1,2 +1,14 @@
 $("#index_books").append("<%= escape_javascript(render @books) %>");
 <%= render 'shared/paginate', resources: @books %>
+<% @books.each do |book| %>
+    $('#book_rating_readonly<%= book.id %>').raty({
+      score : '<%= book.average_rating %>',
+      readOnly : true,
+      halfShow : true,
+      starOff  : "<%= asset_path('star-off.png') %>",
+      starHalf : "<%= asset_path('star-half.png') %>",
+      starOn   : "<%= asset_path('star-on.png') %>",
+      cancelOff : "<%= asset_path('cancel-off.png') %>",
+      cancelOn  : "<%= asset_path('cancel-on.png') %>"
+    });
+<% end %>

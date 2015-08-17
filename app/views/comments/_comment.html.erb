@@ -17,7 +17,6 @@
           </span>
       <% end %>
     </div>
-
     <%= form_for [@book, comment],
           :html => { :id => "form_edit_comment#{comment.id}"},
             remote: true do |f| %>
