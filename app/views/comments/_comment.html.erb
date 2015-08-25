@@ -61,7 +61,7 @@
 
     <div id="comment-replys<%= comment.id %>" class="reply-comment">
       <% comment.children.each do |comment_children| %>
-        <%= render 'comments/comment_reply', comment_children: comment_children%>
+        <%= render 'comments/comment_reply', comment_children: comment_children %>
       <% end %>
     </div>
   </div>

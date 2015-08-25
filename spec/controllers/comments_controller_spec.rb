@@ -114,7 +114,7 @@ RSpec.describe CommentsController do
       }
     end
 
-    it 'test' do
+    it 'destroy comment' do
       xhr :delete, :destroy, url_params
       expect(Comment.where(id: destroy_comment.id)).to be_empty
     end
