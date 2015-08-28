@@ -34,7 +34,6 @@ class CommentsController < ApplicationController
     @book = Book.find(params[:book_id])
     @comment = @book.comment_threads.find(params[:id])
     @comment.destroy
-
     respond_to do |format|
       format.js
     end
@@ -47,7 +46,6 @@ class CommentsController < ApplicationController
     else
       @comment_like.liked_by current_user
     end
-
     respond_to do |format|
       format.js
     end

@@ -52,6 +52,9 @@ class BooksController < ApplicationController
 
   def update
     @book = Book.find(params[:id])
+    unless @book.user.id == current_user.id || can?(:manage, :all)
+      raise CanCan::AccessDenied.new("Insufficient Authorization")
+    end
     if @book.update(book_params)
       redirect_to root_path, notice: t('messages.book.update')
     else
