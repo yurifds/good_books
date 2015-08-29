@@ -1,8 +1,8 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">
+    <%= link_to root_path, :class => "navbar-brand" do %>
       <%= image_tag 'brand.png', size: "40x40"%>
-    </a>
+    <% end %>
     <%= search_form_for @search, url: search_books_path, method: :post,
           class: "navbar-form navbar-left" do |f|%>
           <div class="input-group" style="width:500px;">
@@ -16,11 +16,9 @@
             </div>
           </div>
     <% end %>
-
     <% if user_signed_in? %>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to 'Pagina inicial', root_path %></li>
-        <li><%= link_to 'Perfil', root_path %></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"
               role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.name %>

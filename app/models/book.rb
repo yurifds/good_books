@@ -1,6 +1,4 @@
 class Book < ActiveRecord::Base
-  include ActiveModel::Validations
-
   acts_as_commentable
   has_many :ratings, :dependent => :destroy
   belongs_to :user
@@ -11,6 +9,8 @@ class Book < ActiveRecord::Base
   validates_with AttachmentPresenceValidator, :attributes => :image_book
 
   validates :ISBN, :isbn_format => true, uniqueness: true, :unless => :flgAsin
+  #validate for Asin format
+  validates :ISBN, asin: true, :if => :flgAsin
 
   attr_accessor :captcha # virtual attribute, the honeypot
   validates :captcha, invisible_captcha: true
@@ -28,18 +28,4 @@ class Book < ActiveRecord::Base
   def average_rating
     ratings.average(:points).to_f
   end
-
-  class AsinValidator < ActiveModel::EachValidator
-    def validate_each(record, attribute, value)
-      if value.present?
-        response = HTTParty.get("http://www.amazon.com/dp/#{value}")
-        if response.code != 200
-          record.errors.add attribute, "/ASIN inválido!"
-        end
-      end
-    end
-  end
-
-  #validate for Asin format
-  validates :ISBN, asin: true, :if => :flgAsin
 end
