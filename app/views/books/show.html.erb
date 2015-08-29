@@ -32,7 +32,7 @@
     <div style="display:inline-block">
       <span class="label label-success" id="note"></span>
       <div id="average_rating"></div>
-      <%= link_to amount_of_ratings(@book) %>
+      <%= link_to t('labels.ratings', :count => @book.ratings.count)%>
     </div>
     <p><%= @book.description %></p>
     <div class="form-group">

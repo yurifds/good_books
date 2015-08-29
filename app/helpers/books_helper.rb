@@ -9,17 +9,4 @@ module BooksHelper
       end
     end
   end
-
-  def amount_of_ratings(book)
-    if book.is_a? Book
-      if book.ratings.count > 1
-        "#{book.ratings.count} Avaliações"
-      elsif book.ratings.count == 1
-        "#{book.ratings.count} Avaliação"
-      else
-        ""
-      end
-    end
-  end
-
 end

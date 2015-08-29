@@ -37,7 +37,7 @@
 
       <div id="amount_replys<%= comment.id %>" class="comment-options">
         <% if comment.has_children? %>
-          <a href="#" id="allreplys<%= comment.id %>"> <%= amount_of_replys(comment) %></a>
+          <a href="#" id="allreplys<%= comment.id %>"> <%= t('labels.comments', :count => comment.children.size) %></a>
         <% end %>
       </div>
       <div class="comment-options">

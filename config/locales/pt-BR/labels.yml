@@ -6,6 +6,9 @@ pt-BR:
       by: Por
       language: Idioma
       isbn: ISBN
-    comment:
-      replys: Respostas
-      reply: Resposta
+    comments:
+      one: 1 Resposta
+      other: '%{count} Respostas'
+    ratings:
+      one: 1 Avaliação
+      other: '%{count} Avaliações'

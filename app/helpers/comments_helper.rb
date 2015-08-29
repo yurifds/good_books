@@ -8,16 +8,4 @@ module CommentsHelper
       end
     end
   end
-
-  def amount_of_replys(comment)
-    if comment.is_a? Comment
-      if comment.children.size > 1
-        "#{comment.children.size} #{t('labels.comment.replys')}"
-      elsif comment.children.size == 1
-        "#{comment.children.size} #{t('labels.comment.reply')}"
-      else
-        ""
-      end
-    end
-  end
 end

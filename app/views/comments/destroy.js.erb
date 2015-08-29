@@ -1,3 +1,3 @@
 $('#row<%= @comment.id %>').remove()
 
-$("#amount_replys<%= @comment.parent_id %>").html('<a href="#" id="allreplys<%= @comment.id %>"><%= amount_of_replys(@comment) %></a>')
+$("#amount_replys<%= @comment.parent_id %>").html('<a href="#" id="allreplys<%= @comment.id %>"><%= t("labels.comments", :count => @comment.parent.children.size) %></a>')

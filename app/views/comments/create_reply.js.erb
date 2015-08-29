@@ -4,7 +4,7 @@
   $("#comment-replys<%= @root_comment.id %>").show();
   $("#comment-replys<%= @root_comment.id %>").append("<%= escape_javascript(render 'comments/comment_reply', comment_children: @new_reply) %>");
 
-  $("#amount_replys<%= @root_comment.id %>").html('<a href="#" id="allreplys<%= @root_comment.id %>"><%= amount_of_replys(@root_comment) %></a>')
+  $("#amount_replys<%= @root_comment.id %>").html('<a href="#" id="allreplys<%= @root_comment.id %>"><%= t("labels.comments", :count => @root_comment.children.size) %></a>')
 
   $("#allreplys<%= @root_comment.id %>").click(function(e){
     e.preventDefault();
