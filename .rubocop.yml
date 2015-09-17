@@ -11,7 +11,6 @@ AllCops:
     - db/security/schema.rb
     - db/migrate/*
     - bin/*
-    - config/deploy.rb
 
 Style/AlignArray:
   Enabled: true
