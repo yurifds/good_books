@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
 
   def create
     @book = Book.find(params[:book_id])
-    @comment = Comment.build_from( @book, current_user.id, comment_params[:body] )
+    @comment = Comment.build_from(@book, current_user.id, comment_params[:body])
     @comment.save
     respond_to do |format|
       format.js

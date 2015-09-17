@@ -5,8 +5,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :ratings, :dependent => :destroy
-  has_many :books, :dependent => :destroy
+  has_many :ratings, dependent: :destroy
+  has_many :books, dependent: :destroy
 
   acts_as_voter
 
@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   def rating_by_user(book)
     rating = ratings.where(user_id: id, book_id: book.id).first
 
-    #if the user doesn't rating return 0 points
+    # if the user doesn't rating return 0 points
     if rating
       rating.points
     else

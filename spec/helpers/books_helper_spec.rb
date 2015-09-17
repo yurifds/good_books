@@ -1,7 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe BooksHelper, :type => :helper do
-
+RSpec.describe BooksHelper, type: :helper do
   login_user
 
   describe '#edit_book' do
@@ -10,7 +9,7 @@ RSpec.describe BooksHelper, :type => :helper do
     let(:user_creator) { FactoryGirl.create(:user) }
     let(:book_other_user) { FactoryGirl.create(:book, user: user_creator) }
 
-    it "when the book was created by the user" do
+    it 'when the book was created by the user' do
       expect(helper.can_edit_book?(book_current_user)).to eql(true)
     end
 

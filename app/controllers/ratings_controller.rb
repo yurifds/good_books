@@ -16,5 +16,4 @@ class RatingsController < ApplicationController
   def book
     @book = Book.find(params[:book_id])
   end
-
 end

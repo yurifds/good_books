@@ -2,7 +2,7 @@
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 # Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'spec_helper'
 require 'rspec/rails'
 
@@ -37,10 +37,10 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 
-  config.include Devise::TestHelpers, :type => :controller
+  config.include Devise::TestHelpers, type: :controller
   config.extend ControllerMacros, type: :controller
 
-  config.include Devise::TestHelpers, :type => :helper
+  config.include Devise::TestHelpers, type: :helper
   config.extend ControllerMacros, type: :helper
 
   # RSpec Rails can automatically mix in different behaviours to your tests

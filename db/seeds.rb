@@ -6,16 +6,15 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-
-#user = User.create(name: ENV['username'], last_name: ENV['lastname'],
+# user = User.create(name: ENV['username'], last_name: ENV['lastname'],
 #  email: ENV['email'], password: ENV['password'],
 #  password_confirmation: ENV['password_confirmation'], admin: true)
 
-user = User.create(name: "usertest",last_name: "usertest",
-  email:"usertest@gmail.com",password: "12345678",
-  password_confirmation: "12345678", admin: true)
- 
-#50.times do |index|
+user = User.create(name: 'usertest', last_name: 'usertest',
+                   email: 'usertest@gmail.com', password: '12345678',
+                   password_confirmation: '12345678', admin: true)
+
+# 50.times do |index|
 #  Book.create! title: "PRACTICAL OBJECT-ORIENTED DESIGN IN RUBY#{index}",
 #              author: "SANDI METZ#{index}",
 #              ISBN: "978852092277#{index}", language: "Inglês",
@@ -23,6 +22,6 @@ user = User.create(name: "usertest",last_name: "usertest",
 #              flgAsin: false,
 #              description: "descrição#{index}",
 #              user: user
-#end
+# end
 #
-#puts 'Seed executed successfully'
+# puts 'Seed executed successfully'

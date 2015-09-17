@@ -12,5 +12,4 @@ RSpec.describe Comment, type: :model do
       it { expect(subject).to validate_presence_of(:user) }
     end
   end
-
 end

@@ -1,10 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe CommentsController do
-
   login_user_admin
 
-  describe "POST #create" do
+  describe 'POST #create' do
     let(:user) { FactoryGirl.create(:user) }
     let(:book) { FactoryGirl.create(:book, user: user) }
     context 'with valid params' do
@@ -16,7 +15,7 @@ RSpec.describe CommentsController do
           book_id: book.id
         }
       end
-
+ 
       it 'create comment' do
         expect { xhr :post, :create, comment_params }.to change { Comment.count }.by(1)
       end
@@ -38,13 +37,12 @@ RSpec.describe CommentsController do
     end
   end
 
-  describe "POST #create_reply" do
+  describe 'POST #create_reply' do
     let(:user) { FactoryGirl.create(:user) }
     let(:book) { FactoryGirl.create(:book, user: user) }
     let(:root_comment) { FactoryGirl.create(:comment, commentable_id: book.id) }
 
     context 'with valid params' do
-
       let(:comment_params) do
         {
           comment: {
@@ -141,10 +139,9 @@ RSpec.describe CommentsController do
     end
 
     it 'unlike comment' do
-      xhr :post, :like, url_params #like
-      xhr :post, :like, url_params #unlike
+      xhr :post, :like, url_params # like
+      xhr :post, :like, url_params # unlike
       expect(subject.current_user.voted_up_on? comment).to eql(false)
     end
   end
-
 end

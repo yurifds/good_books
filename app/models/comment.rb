@@ -1,40 +1,39 @@
 class Comment < ActiveRecord::Base
-  acts_as_nested_set :scope => [:commentable_id, :commentable_type]
+  acts_as_nested_set scope: [:commentable_id, :commentable_type]
 
-  validates :body, :presence => true
-  validates :user, :presence => true
+  validates :body, presence: true
+  validates :user, presence: true
 
   attr_accessor :captcha # virtual attribute, the honeypot
   validates :captcha, invisible_captcha: true
 
   acts_as_votable
 
-  belongs_to :commentable, :polymorphic => true
+  belongs_to :commentable, polymorphic: true
   belongs_to :user
-
 
   def self.build_from(obj, user_id, comment)
     new \
-      :commentable => obj,
-      :body        => comment,
-      :user_id     => user_id
+      commentable: obj,
+      body: comment,
+      user_id: user_id
   end
 
-  #helper method to check if a comment has children
+  # helper method to check if a comment has children
   def has_children?
-    self.children.any?
+    children.any?
   end
 
   # Helper class method to lookup all comments assigned
   # to all commentable types for a given user.
   scope :find_comments_by_user, lambda { |user|
-    where(:user_id => user.id).order('created_at DESC')
+    where(user_id: user.id).order('created_at DESC')
   }
 
   # Helper class method to look up all comments for
   # commentable class name and commentable id.
   scope :find_comments_for_commentable, lambda { |commentable_str, commentable_id|
-    where(:commentable_type => commentable_str.to_s, :commentable_id => commentable_id).order('created_at DESC')
+    where(commentable_type: commentable_str.to_s, commentable_id: commentable_id).order('created_at DESC')
   }
 
   # Helper class method to look up a commentable object

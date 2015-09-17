@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: "books#index"
+  root to: 'books#index'
 
   resources :books do
     collection { post :search, to: 'books#index' }

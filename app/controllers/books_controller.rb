@@ -1,13 +1,13 @@
 class BooksController < ApplicationController
-  #load_and_authorize_resource :only => [:index, :edit, :update, :create, :destroy]
-  skip_authorization_check :only => [:index, :autocomplete_title]
-  #load_and_authorize_resource
-  before_action :authenticate_user!, :except => [:index, :show, :autocomplete_title]
+  # load_and_authorize_resource :only => [:index, :edit, :update, :create, :destroy]
+  skip_authorization_check only: [:index, :autocomplete_title]
+  # load_and_authorize_resource
+  before_action :authenticate_user!, except: [:index, :show, :autocomplete_title]
 
   def index
     @search = Book.search(params[:q])
     @search.sorts = 'title asc'
-    @books = @search.result.paginate(page: params[:page], :per_page => 10)
+    @books = @search.result.paginate(page: params[:page], per_page: 10)
     respond_to do |format|
       format.html
       format.js
@@ -19,7 +19,7 @@ class BooksController < ApplicationController
     @search.sorts = 'title asc'
     @books = @search.result
     respond_to do |format|
-      format.json { render :json => @books.to_json(:methods => [:book_url, :title_truncate]) }
+      format.json { render json: @books.to_json(methods: [:book_url, :title_truncate]) }
       format.js
     end
   end
@@ -34,26 +34,24 @@ class BooksController < ApplicationController
     if user_signed_in?
       rating = current_user.ratings.where(user_id: current_user.id, book_id: @book.id).first
 
-      if rating
-        @points_current_user = rating.points
-      end
+      @points_current_user = rating.points if rating
     end
 
-    #@points_current_user = @book.ratings.where(user_id: current_user.id).first.points
+    # @points_current_user = @book.ratings.where(user_id: current_user.id).first.points
     @comment = Comment.new
   end
 
   def edit
     @book = Book.find(params[:id])
     unless @book.user.id == current_user.id || can?(:manage, :all)
-      raise CanCan::AccessDenied.new("Insufficient Authorization")
+      fail CanCan::AccessDenied.new('Insufficient Authorization')
     end
   end
 
   def update
     @book = Book.find(params[:id])
     unless @book.user.id == current_user.id || can?(:manage, :all)
-      raise CanCan::AccessDenied.new("Insufficient Authorization")
+      fail CanCan::AccessDenied.new('Insufficient Authorization')
     end
     if @book.update(book_params)
       redirect_to root_path, notice: t('messages.book.update')

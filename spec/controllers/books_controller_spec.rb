@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe BooksController do
-
   login_user_admin
 
   describe 'GET #index' do
@@ -23,7 +22,7 @@ RSpec.describe BooksController do
     end
   end
 
-  describe "GET #new" do
+  describe 'GET #new' do
     before { get :new }
 
     it 'assigns a new Book to @book' do
@@ -31,20 +30,20 @@ RSpec.describe BooksController do
     end
   end
 
-  describe "GET #autocomplete_title" do
+  describe 'GET #autocomplete_title' do
     let(:user) { FactoryGirl.create(:user) }
     let(:book) { FactoryGirl.create(:book, user: user) }
 
     context 'autocomplete' do
       it 'status code' do
         xhr :get, :autocomplete_title, title: book.title, format: :json
-        expect(response.code).to eq("200")
+        expect(response.code).to eq('200')
       end
 
       it 'when there is record' do
         xhr :get, :autocomplete_title, title: book.title, format: :json
         result = JSON.parse(response.body)
-        expect(result[0]["title"]).to eq(book.title)
+        expect(result[0]['title']).to eq(book.title)
       end
 
       it 'when there is no record' do
@@ -55,9 +54,9 @@ RSpec.describe BooksController do
     end
   end
 
-  describe "POST #create" do
+  describe 'POST #create' do
     let(:uploadFile) do
-      Rack::Test::UploadedFile.new("#{Rails.root}/spec/support/fixtures/test.jpg","image/jpg")
+      Rack::Test::UploadedFile.new("#{Rails.root}/spec/support/fixtures/test.jpg", 'image/jpg')
     end
 
     let(:book_params) do
@@ -75,7 +74,7 @@ RSpec.describe BooksController do
 
     context 'with valid params' do
       it 'save a book' do
-        expect {post :create, book_params}.to change { Book.count }.by(1)
+        expect { post :create, book_params }.to change { Book.count }.by(1)
       end
       it 'redirect to home' do
         post :create, book_params
@@ -92,7 +91,7 @@ RSpec.describe BooksController do
     end
   end
 
-  describe "GET #edit" do
+  describe 'GET #edit' do
     let(:user) { FactoryGirl.create(:user) }
     let(:edit_book) { FactoryGirl.create(:book, user: user) }
 
@@ -102,7 +101,7 @@ RSpec.describe BooksController do
     end
   end
 
-  describe "PUT #update " do
+  describe 'PUT #update ' do
     let(:user) { FactoryGirl.create(:user) }
     let(:edit_book) { FactoryGirl.create(:book, user: user) }
 
@@ -141,11 +140,11 @@ RSpec.describe BooksController do
     end
   end
 
-  describe "DELETE #destroy" do
+  describe 'DELETE #destroy' do
     let(:user) { FactoryGirl.create(:user) }
     let(:remove_book) { FactoryGirl.create(:book, user: user) }
 
-    it "remove book" do
+    it 'remove book' do
       delete :destroy, id: remove_book.id
       expect(Book.where(id: remove_book.id)).to be_empty
     end

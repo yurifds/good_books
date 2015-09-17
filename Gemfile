@@ -15,7 +15,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'cancancan', '~> 1.10'
 gem 'bootstrap-sass'
-gem "paperclip", "~> 4.3"
+gem 'paperclip', '~> 4.3'
 gem 'aws-sdk', '< 2.0'
 gem 'acts_as_commentable_with_threading'
 gem 'acts_as_votable', '~> 0.10.0'
@@ -29,7 +29,7 @@ gem 'puma'
 
 group :test do
   gem 'shoulda'
-  gem "codeclimate-test-reporter"
+  gem 'codeclimate-test-reporter'
 end
 
 group :development, :test do
@@ -37,8 +37,9 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
   gem 'rspec-rails'
   gem 'spring'
-  gem "factory_girl_rails", "~> 4.0"
+  gem 'factory_girl_rails', '~> 4.0'
   gem 'mailcatcher'
+  gem 'rubocop', require: false
 end
 
 group :production do
