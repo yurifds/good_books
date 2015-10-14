@@ -4,7 +4,7 @@
 *Good Books* O principal objetivo da app é fazer a avaliação de livros com suporte a thread de comentários, likes etc. Demo http://goodbooks4devs.herokuapp.com/
 
 ## Instalação
-#test
+
 Baixe o repositório
 
     git clone git@github.com:yuriferreira/good_books.git
