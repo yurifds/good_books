@@ -30,7 +30,3 @@ Execute o  [mailcatcher](http://mailcatcher.me/) para teste de e-mail no ambient
 Rode a aplicação :grin:
 
     rails s
-
-## Contribuindo
-
-Novas ideias e contribuintes são bem vindos!  
